@@ -1,8 +1,8 @@
-# Group Members  
-  Dinh Khang Duong
-  
-  Pragya Shukla 
+# Group Members    
+ Pragya Shukla
  
+ Dinh Khang Duong
+
  # Assignment 1 : 
  ClientServercalculator
  
