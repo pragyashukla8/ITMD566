@@ -7,21 +7,25 @@ public class PartInventory {
 			private int providerid;
 			private int serviceid;
 			private String name;
-			private String make;
 			private String description;
 			private String status;
 			private float cost;
+			private String category;
+			private String imagepath;
 			
 			// constructor
-			public PartInventory(int providerid, int serviceid, String name, String make, String description, String status, float cost) {
+			public PartInventory(int providerid, int serviceid, String name, String description, String status, float cost, String category, String imagepath) {
 				this.providerid=providerid;
 				this.serviceid=serviceid;
 				this.name=name;
-				this.make=make;
 				this.description=description;
 				this.status=status;
 				this.cost=cost;
+				this.category=category;
+				this.imagepath=imagepath;
 			}
+			
+
 			public PartInventory() {
 				// TODO Auto-generated constructor stub
 			}
@@ -51,12 +55,6 @@ public class PartInventory {
 			public void setName(String name) {
 				this.name = name;
 			}
-			public String getMake() {
-				return make;
-			}
-			public void setMake(String make) {
-				this.make = make;
-			}
 			public String getDescription() {
 				return description;
 			}
@@ -75,4 +73,19 @@ public class PartInventory {
 			public void setCost(float cost) {
 				this.cost = cost;
 			}
+			public String getCategory() {
+				return category;
+			}
+			public void setCategory(String category) {
+				this.category = category;
+			}
+			public String getImagepath() {
+				return imagepath;
+			}
+
+			public void setImagepath(String imagepath) {
+				this.imagepath = imagepath;
+			}
+
 }
+

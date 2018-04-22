@@ -13,9 +13,13 @@ public class CarInventory {
 		private String status;
 		private float kmrun;
 		private float cost;
+		private String description;
+		private String color;
+		private String imagepath;
+		
 		
 		// constructor
-		public CarInventory(int providerid, int serviceid, String carmodel, String carmake, String mileage, String yearmake, String status, float kmrun, float cost) {
+		public CarInventory(int providerid, int serviceid, String carmodel, String carmake, String mileage, String yearmake, String status, float kmrun, float cost, String description, String color, String imagepath) {
 			this.providerid=providerid;
 			this.serviceid=serviceid;
 			this.carmodel=carmodel;
@@ -25,6 +29,9 @@ public class CarInventory {
 			this.status=status;
 			this.kmrun=kmrun;
 			this.cost=cost;
+			this.description= description;
+			this.color= color;
+			this.imagepath=imagepath;
 		}
 		public CarInventory() {
 			// TODO Auto-generated constructor stub
@@ -92,4 +99,24 @@ public class CarInventory {
 			this.cost = cost;
 		}
 
+		public String getDescription() {
+			return description;
+		}
+		public void setDescription(String description) {
+			this.description = description;
+		}
+		
+		public String getColor() {
+			return color;
+		}
+		public void setColor(String color) {
+			this.color = color;
+		}
+		public String getImagepath() {
+			return imagepath;
+		}
+		public void setImagepath(String imagepath) {
+			this.imagepath = imagepath;
+		}
+		
 }

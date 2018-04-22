@@ -1,6 +1,6 @@
 package com.test.beans;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Users {
 	
@@ -13,12 +13,12 @@ public class Users {
 		private String address;
 		private String emailid;
 		private String gender;
-		private Date dateofbirth;
+		private String dateofbirth;
 		private String role;
 		private int serviceid;
 		
 		// constructor
-		public Users(String fname,String mname, String lname, String contact, String address, String emailid, String gender, Date dateofbirth, String role, int serviceid  ) {
+		public Users(String fname,String mname, String lname, String contact, String address, String emailid, String gender, String dateofbirth, String role, int serviceid  ) {
 			this.fname=fname;
 			this.mname=mname;
 			this.lname=lname;
@@ -83,10 +83,10 @@ public class Users {
 		public void setGender(String gender) {
 			this.gender = gender;
 		}
-		public Date getDateofbirth() {
+		public String getDateofbirth() {
 			return dateofbirth;
 		}
-		public void setDateofbirth(Date dateofbirth) {
+		public void setDateofbirth(String dateofbirth) {
 			this.dateofbirth = dateofbirth;
 		}
 		public String getRole() {
