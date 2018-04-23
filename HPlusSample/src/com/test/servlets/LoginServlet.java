@@ -76,7 +76,7 @@ public class LoginServlet extends HttpServlet{
 				String html = "<html><h3>Cannot find user</h3></html>";
 				resp.getWriter().write(html+" ");
 						
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/html/customerpage.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/html/login.jsp");
 				dispatcher.include(req, resp);
 			}
 			

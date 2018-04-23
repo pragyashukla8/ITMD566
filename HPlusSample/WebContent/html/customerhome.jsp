@@ -177,6 +177,7 @@ h2 {
         <li><a href="login">Login</a></li>
         <li><a href="registerUser">Register</a></li>
         <li><a href="profile.html">Profile</a></li>
+        <li><a href="shoppingcart">Cart</a></li>
      </ul>
      <!-- navbar -->
      </div>

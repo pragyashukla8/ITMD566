@@ -210,7 +210,7 @@
 
 
                   <!-- Please retrieve data for Account Information -->
-                  <form action="customerinfo" method="post">
+                  <form action="providerinfo" method="post">
                     <%
 			  	     	List<Users> userdetail = new ArrayList<Users>();
 			  	    	userdetail = (ArrayList)request.getAttribute("userdetail");

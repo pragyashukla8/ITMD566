@@ -480,6 +480,44 @@ public class ApplicationDao {
 		return cardetails;
 	}
 	
+	public List<CarInventory> getCarAdUser(int userid) {
+		CarInventory carinventory = null;
+		List<CarInventory> cardetail = new ArrayList<CarInventory>();
+
+		try {
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			String sql = "select * from carinventory where providerid =" + userid;
+
+			Statement statement = connection.createStatement();
+
+			ResultSet set = statement.executeQuery(sql);
+
+			while (set.next()) {
+				System.out.println("Recieved data from carinventory");
+				carinventory = new CarInventory();
+				carinventory.setCarid(set.getInt("carid"));
+				carinventory.setProviderid(set.getInt("providerid"));
+				carinventory.setServiceid(set.getInt("serviceid"));
+				carinventory.setCarmodel(set.getString("carmodel"));
+				carinventory.setCarmake(set.getString("carmake"));
+				carinventory.setMileage(set.getString("mileage"));
+				carinventory.setYearmake(set.getString("yearmake"));
+				carinventory.setStatus(set.getString("status"));
+				carinventory.setKmrun(set.getFloat("kmrun"));
+				carinventory.setCost(set.getFloat("cost"));
+				carinventory.setDescription(set.getString("description"));
+				carinventory.setColor(set.getString("color"));
+				carinventory.setImagepath(set.getString("imagepath"));
+				cardetail.add(carinventory);
+			}
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return cardetail;
+	}
+
 	
 	public int deleteCarInventory(int carid) {
 		int rowsAffected = 0;
@@ -847,5 +885,124 @@ public class ApplicationDao {
 		}
 		return rowinserted;
 	}
+	
+	public int updateCartQuantity(int quantity, int cartid) {
+		int rowupdated = 0;
+		System.out.println("in add cart");
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+			
+			// write the insert query for Users table
+			String updateQuery = "Update cart set quantity = " + quantity  +" where cartid = " + cartid ;
+						
+		    // execute the statement
+						
+			Statement statement = connection.createStatement();
+			rowupdated = statement.executeUpdate(updateQuery);
+									
+			} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return rowupdated;
+	}
+
+	
+	public List<Cart> getCartUser(int userid) {
+		Cart cart = null;
+		List<Cart> cartdetail = new ArrayList<Cart>();
+
+		try {
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			String sql = "select * from cart where customerid =" + userid;
+
+			Statement statement = connection.createStatement();
+
+			ResultSet set = statement.executeQuery(sql);
+
+			while (set.next()) {
+				System.out.println("Recieved data from cart");
+				cart = new Cart();
+				cart.setCartid(set.getInt("cartid"));
+				cart.setProviderid(set.getInt("providerid"));
+				cart.setCustomerid(set.getInt("customerid"));
+				cart.setServiceid(set.getInt("serviceid"));
+				cart.setItemname(set.getString("itemname"));
+				cart.setCost(set.getFloat("cost"));
+				cart.setQuantity(set.getInt("quantity"));
+				cartdetail.add(cart);
+			}
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return cartdetail;
+	}
+
+	public int deleteCart(int cartid) {
+		int rowsAffected = 0;
+		System.out.println("delete cart data " + cartid);
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			// write the insert query
+			String deleteQuery = "Delete from cart where cartid = ?";
+
+			// set parameters with PreparedStatement
+			java.sql.PreparedStatement statement = connection.prepareStatement(deleteQuery);
+			statement.setInt(1, cartid);
+			
+			// execute the statement
+			rowsAffected = statement.executeUpdate();
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return rowsAffected;
+	}
+
+	public int addBookingData(BookingData bookingdata) {
+		int rowinserted = 0;
+		System.out.println("in add booking data");
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+			
+			//Get last value of CarID from CarInventory Table 
+			int incrementorderid=0;
+			java.sql.PreparedStatement pst1 = connection.prepareStatement("select max(orderid) from bookingdata");
+            ResultSet rs = pst1.executeQuery();
+            while(rs.next())
+            {            	
+            	incrementorderid = rs.getInt(1) + 1;
+            }
+
+			
+			// write the insert query for Users table
+			String insertQuery = "insert into cart values(?,?,?,?,?,?,?,?)";
+
+			// set parameters with PreparedStatement
+			java.sql.PreparedStatement statement = connection.prepareStatement(insertQuery);
+			statement.setInt(1, incrementorderid);
+			statement.setInt(2, bookingdata.getCustomerid());
+			statement.setInt(3, bookingdata.getProviderid());
+			statement.setInt(4, bookingdata.getServiceid());
+			statement.setString(5, bookingdata.getItemname());
+			statement.setFloat(6, bookingdata.getCost());
+			statement.setInt(7, bookingdata.getQuantity());
+			statement.setDate(8, bookingdata.getOrderdate());
+			
+			// execute the statement
+			rowinserted = statement.executeUpdate();
+			
+			} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return rowinserted;
+	}
+
+	
 	
 }
