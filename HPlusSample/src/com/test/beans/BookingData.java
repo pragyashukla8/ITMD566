@@ -12,10 +12,10 @@ public class BookingData {
 	private String itemname;
 	private int quantity;
 	private float cost;
-	private Date orderdate;
+	private String orderdate;
 			
 	// constructor
-	public BookingData(int orderid, int customerid, int providerid, int serviceid, String itemname, int quantity, float cost, Date orderdate) {
+	public BookingData(int orderid, int customerid, int providerid, int serviceid, String itemname, int quantity, float cost, String orderdate) {
 		this.orderid=orderid;
 		this.customerid=customerid;
 		this.providerid=providerid;
@@ -71,10 +71,10 @@ public class BookingData {
 		public void setCost(float cost) {
 			this.cost = cost;
 		}
-		public Date getOrderdate() {
+		public String getOrderdate() {
 			return orderdate;
 		}
-		public void setOrderdate(Date orderdate) {
+		public void setOrderdate(String orderdate) {
 			this.orderdate = orderdate;
 		}
 

@@ -6,6 +6,37 @@
 <title>H+ Sport</title>
 <link rel="stylesheet" href="css/style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+	form {
+      padding: 30px;
+      border: 1px solid black;
+      display: inline-block;
+      text-align: center;
+    }
+
+    label {
+      display: inline-block;
+      width: 180px;
+      text-align: right;
+    }
+	
+	.btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      width: 25%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+</style>
 </head>
 <body>
 
@@ -13,16 +44,12 @@
 		<nav class="nav" role="navigation">
 			<div class="container nav-elements">
 				<div class="branding">
-					<a href="#home"><img src="images/logo.png"
+					<a href="#home"><img style="margin-left:50%;" src="images/logo.png"
 						alt="Logo - H Plus Sports"></a>
 				</div>
 				<!-- branding -->
 				<ul class="navbar">
 					<li><a href="home">Home</a></li>
-					<li><a href="#history">About Us</a></li>
-					<li><a href="#products">Cars For Sale</a></li>
-					<li><a href="#parts">Car Parts For Sale</a></li>
-					<li><a href="#search">Search</a></li>
 				</ul>
 				<!-- navbar -->
 			</div>
@@ -49,7 +76,7 @@
 			
 		<form action="registerUser" method="post">
 		<label>Username</label> <input type="text" name="username" id="username"><br/>
-		<label>Password</label> <input type="password" name="password" id="password"><br/>
+		<label>Password</label> <input style="width=160px;" type="password" name="password" id="password"><br/>
 		<label>Confirm Password</label> <input type="password" name="confirmpassword" id="confirmpassword"><br/>
 		<label>Secret Question </label>
 		<input list="secretquestion" name="secretquestion">
@@ -70,20 +97,22 @@
 		<label>Gender</label> <input type="text" name="gender" id="gender"><br/>
 		<label>Date Of Birth</label> <input type="text" placeholder="MM/DD/YYYY" name="dateofbirth" id="dateofbirth"><br/>
 		<br />
-		<h1>Payment Details</h1>
+		<p></p>
+		<h2>Payment Details</h2>
 		<p>Please enter your credit card information!</p>
 		<hr>
 		<br/>
 		<label>Card Number</label> <input type="text" name="carddetail" id="carddetail"><br/>
-		<label>Expiry</label> <input type="text" placeholder="MM/YYYY" name="expiry" id="expiry"><br/>
+		<label>Expiry Date</label> <input type="text" placeholder="MM/YYYY" name="expiry" id="expiry"><br/>
 		<label>Card Password</label> <input type="password" name="cardpassword" id="cardpassword"><br/>
 		<label>Type of User </label> 
 		<input list="usertypes" name="usertypes">
 		<datalist id="usertypes">
 			<option>Customer</option>
 			<option>Provider</option>
-		</datalist><br/>		  				
-		<input type="submit" value="Submit" id="submit">
+		</datalist><br/>
+		<p></p>		  				
+		<input type="submit" value="Submit" id="submit" class="btn">
 	</form>
 	
 	</div>

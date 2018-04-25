@@ -30,20 +30,49 @@
       margin: 4px 2px;
       cursor: pointer;
     }
+    
+    .btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 30%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+		
+    }
 
 
 
     form {
-      padding: 50px;
-      border: 1px solid black;
+      padding: 45px;
+      border-radius: 4px;
       display: inline-block;
       text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     label {
       display: inline-block;
       width: 140px;
       text-align: right;
+      margin-right:8px;
+    }
+    #partid, #partname, #description, #category, #price{
+      border: ;
+      outline: 0;
+      font-family: Raleway, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+		
+    }
+    img {
+    
+    border-radius: 4px;
+    padding: 5px;
+    
     }
 
     /* only the submit button is matched by this selector,
@@ -63,11 +92,10 @@
         </div>
         <!-- branding -->
         <ul class="navbar">
-          <li><a href="home">Home</a></li>
-          <li><a href="#history">About Us</a></li>
-          <li><a href="#products">Cars For Sale</a></li>
-          <li><a href="#parts">Car Parts For Sale</a></li>
-          <li><a href="#search">Search</a></li>
+        	<li><a href="carsearchresult">Search Cars</a></li>
+        	<li><a href="partsearchresult">Search Parts</a></li>
+        	<li><a href="logout">Logout</a></li>
+        	<li><a href="shoppingcart">Cart</a></li>
         </ul>
         <!-- navbar -->
       </div>
@@ -86,8 +114,8 @@
   <section id="carpartform" class="section">
     <div class="container tagline">
       <br />
-      <h1>Edit Car Part Post</h1>
-      <p>Please provide the details of the Car Part!</p>
+      <h1>Car Part Catalogue</h1>
+      <p>Check out our Car Parts!</p>
       <hr>
       <br/>
       
@@ -103,32 +131,32 @@
       <form action="carpartdisplay" method="post">
       
       	<div class="form-control">
-      		<img src="<%=partinventory.getImagepath()%>">
+      		<img style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-left:125px; margin-bottom:35px;" width="220" height="180" src="<%=partinventory.getImagepath()%>">
       	</div>	
       
         <div class="form-control">
-          <label>Title:</label>
-          <input type="text" class="form-control" id="partid" name="partid" value=<%=partinventory.getPartid()%> READONLY>
+          <label>ID:</label>
+          <input style="border:none;" type="text" class="form-control" id="partid" name="partid" value=<%=partinventory.getPartid()%> READONLY>
         </div>
 
         <div class="form-control">
           <label>Car Part Name:</label>
-          <input type="text" class="form-control" id="partname" name="partname" value=<%=partinventory.getName()%> READONLY>
+          <input style="border:none;" type="text" class="form-control" id="partname" name="partname" value=<%=partinventory.getName()%> READONLY>
         </div>
 
         <div class="form-control">
-          <label>Description:</label>
-          <textarea class="form-control" rows="5" id="description" name="description" READONLY><%=partinventory.getDescription()%></textarea>
+          <label style="vertical-align: top;">Description:</label>
+          <textarea style="border:none; resize:none; wrap:hard;" class="form-control" rows="5" id="description" name="description" READONLY><%=partinventory.getDescription()%></textarea>
         </div>
 
         <div class="form-control">
           <label>Type:</label>
-          <input type="text" class="form-control" id="category" name="category" value=<%=partinventory.getCategory()%> READONLY>
+          <input style="border:none;" type="text" class="form-control" id="category" name="category" value=<%=partinventory.getCategory()%> READONLY>
         </div>
 
         <div class="form-control">
           <label>Price:</label>
-          <input type="number" class="form-control" id="price" name="price" value=<%=partinventory.getCost()%>>
+          <input style="border:none;" type="number" class="form-control" id="price" name="price" value=<%=partinventory.getCost()%> READONLY>
         </div>
 
 		<%
@@ -156,7 +184,7 @@
         <hr />
         <br />
         <div class="button">
-          <input type="submit" value="addToCart" id="addToCart">
+          <input type="submit" value="Add to Cart" id="addToCart" class="btn">
         </div>
       </form>
       

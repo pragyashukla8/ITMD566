@@ -23,7 +23,7 @@ public class ProviderHome extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("In customer home post method");
+		System.out.println("In provider home post method");
 		int carrowdeleted=0;
 		int partrowdeleted=0;
 		List<PartInventory> partdetail= new ArrayList<PartInventory>();
@@ -32,6 +32,21 @@ public class ProviderHome extends HttpServlet {
 		ApplicationDao dao= new ApplicationDao();
 		//String email ="";
 		String email = req.getParameter("newemail");
+		System.out.println("email :" + email);
+		String postpartid1 = req.getParameter("postpartid");
+		System.out.println("postpartid1 :" + postpartid1);
+		String postcarid1 = req.getParameter("postcarid");
+		System.out.println("postcarid1 :" + postcarid1);
+		if(postpartid1.equals(null)){
+			
+			postpartid1 = "0";
+			System.out.println("postpartid1 :" + postpartid1);
+		}
+		if(postcarid1.equals(null)){
+			
+			postcarid1 = "0";
+			System.out.println("postcarid1 :" + postcarid1);
+		}
 		int postpartid = Integer.parseInt(req.getParameter("postpartid"));
 		int postcarid = Integer.parseInt(req.getParameter("postcarid"));
 		
@@ -90,7 +105,7 @@ public class ProviderHome extends HttpServlet {
 			cardetail = dao.getCarInventory(postcarid);
 			
 			//write the products data back to the client browser
-			req.setAttribute("partdetail", partdetail);
+			req.setAttribute("cardetail", cardetail);
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/html/cardetails.jsp");
 			dispatcher.include(req, resp);
 			
@@ -131,6 +146,28 @@ public class ProviderHome extends HttpServlet {
 			dispatcher.include(req, resp);
 
 			
+		}
+		
+		if(req.getParameter("addnewpartpost") != null) {
+			
+			System.out.println("addnewpost button");
+			String html = "<html><h3>Add Post</h3></html>";
+			resp.getWriter().write(html+" ");
+						
+		    RequestDispatcher dispatcher = req.getRequestDispatcher("/html/carpartform.jsp");
+			dispatcher.include(req, resp);
+					
+		}
+		
+		if(req.getParameter("addnewcarpost") != null) {
+			
+			System.out.println("addnewpost button");
+			String html = "<html><h3>Add Post</h3></html>";
+			resp.getWriter().write(html+" ");
+						
+		    RequestDispatcher dispatcher = req.getRequestDispatcher("/html/carform.jsp");
+			dispatcher.include(req, resp);
+					
 		}
 
 			

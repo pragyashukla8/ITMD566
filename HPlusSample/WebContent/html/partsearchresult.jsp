@@ -18,7 +18,6 @@
     h2 {
       color: #6495ED;
     }
-
     #submit {
       /*color: #3385ff;*/
       background-color: #87CEFA;
@@ -33,13 +32,9 @@
       margin: 4px 2px;
       cursor: pointer;
     }
-
     #search {
       padding-bottom: 240px;
     }
-
-
-
     /*Resize the wrap to see the search bar change!*/
   </style>
 </head>

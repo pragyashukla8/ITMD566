@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.test.beans.BookingData;
 import com.test.beans.CarInventory;
 import com.test.beans.Cart;
+import com.test.beans.Login;
 import com.test.beans.PartInventory;
+import com.test.beans.Users;
 import com.test.dao.ApplicationDao;
 
 @WebServlet("/carpartdisplay")
@@ -25,17 +28,23 @@ public class CarPartDisplay extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		System.out.println("In car display dopost method");
+		List<Users> userdetail= new ArrayList<Users>();
+		List<CarInventory> cardetail= new ArrayList<CarInventory>();
+		List<PartInventory> partdetail= new ArrayList<PartInventory>();
+		List<Login> logindetail= new ArrayList<Login>();
+		List<BookingData> bookingdetail1= new ArrayList<BookingData>();
+		List<BookingData> bookingdetail2= new ArrayList<BookingData>();
 		int rowinserted =0;
 		int partid = Integer.parseInt(req.getParameter("partid"));
 		
 		// moving variables for cart
 		ApplicationDao dao= new ApplicationDao();
 		Cart cart= new Cart();
-		List<PartInventory> partdetail= new ArrayList<PartInventory>();
+		List<PartInventory> partdetail1= new ArrayList<PartInventory>();
 		
-		partdetail= dao.getPartInventory(partid);
+		partdetail1= dao.getPartInventory(partid);
 		
-		Iterator<PartInventory> iterator = partdetail.iterator();
+		Iterator<PartInventory> iterator = partdetail1.iterator();
 		while (iterator.hasNext()) {
 			PartInventory partinventory = iterator.next();
 			cart.setProviderid(partinventory.getProviderid());
@@ -79,22 +88,54 @@ public class CarPartDisplay extends HttpServlet {
 			dispatcher.include(req, resp);
 		}
 		
-		String criteria = "";
-		String search1 = "";
-		String search2 = "";
-		
-		//dispatch the request to login.jsp resource
-		List<PartInventory> partdetail1= new ArrayList<PartInventory>();
-		partdetail1 = dao.searchPart(criteria, search1, search2);
-		
+		logindetail= dao.getLogin(username);
+		String role = null;
+		Iterator<Login> iterator1 = logindetail.iterator();
+		while (iterator1.hasNext()) {
+			Login login = iterator1.next();
+			role = login.getUsertype();
+		}
 		//write the products data back to the client browser
-		req.setAttribute("partdetail", partdetail1);
+		int userid=0;
+		userid=dao.getUserID(username);
+		//System.out.println("userid" + userid);
+				
+		if(userid ==0) {
+			
+			String html = "<html><h3>Cannot find user</h3></html>";
+			resp.getWriter().write(html+" ");
+					
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/html/login.jsp");
+			dispatcher.include(req, resp);
+		}
+		
+		
+		//call DAO layer and get all products for search criteria
+		userdetail = dao.getUserDetail(userid);
+		cardetail = dao.getCarInventory(userid);
+		partdetail = dao.getPartAdUser(userid);
+		bookingdetail1 = dao.getBookingbyCustomer(userid);
+		bookingdetail2 = dao.getBookingbyProvider(userid);
+						
 		//write the products data back to the client browser
-		String html = "<html><h3>Added to cart</h3></html>";
+		req.setAttribute("userdetail", userdetail);
+		req.setAttribute("partdetail", partdetail);
+		req.setAttribute("cardetail", cardetail);
+		req.setAttribute("bookingdetail1", bookingdetail1);
+	    req.setAttribute("bookingdetail2", bookingdetail2);
+						
+						
+		String html = "<html><h3>Added to Cart</h3></html>";
 		resp.getWriter().write(html+" ");
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/html/partsearchresult.jsp");
-		dispatcher.include(req, resp);
+						
+		if(role.equals("Customer")) {
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/html/customerhome.jsp");
+			dispatcher.include(req, resp);
+		}
+		if(role.equals("Provider")) {
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/html/providerhome.jsp");
+			dispatcher.include(req, resp);
+		}
 		
 	}
 	

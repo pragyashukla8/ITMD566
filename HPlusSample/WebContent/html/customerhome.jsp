@@ -4,6 +4,7 @@
 <%@page import="com.test.beans.Users"%>
 <%@page import="java.util.List"%>
 <%@page import="com.test.beans.PartInventory"%>
+<%@page import="com.test.beans.BookingData"%>
 <html lang="en">
 
 <head>
@@ -58,11 +59,12 @@ h2 {
                 display: none;
                 padding: 100px 20px;
                 height: 100%;
-
+				width: 100%;
               }
 
  #Home {
             background-color: #F8F8F8;
+            width: 100%;
        }
 
  #Purchases {
@@ -75,6 +77,7 @@ h2 {
 
  #Posts {
             background-color: #F8F8F8;
+            
         }
 
  #purchases {
@@ -123,7 +126,7 @@ h2 {
 
  form {
             padding: 30px;
-            border: 1px solid black;
+            
             display: inline-block;
             text-align: center;
       }
@@ -133,24 +136,96 @@ h2 {
            width: 140px;
            text-align: right;
            min-width: 80px;
+           margin-right:7px;
        }
+ #fname, #lname,#contact,#email,#address, #dob {
+      width: 48%;
+      margin-bottom: 20px;
+      padding: 12px;
+      border: 1px solid #f8f8f8;
+      border-radius: 3px;
+    }
+ 
 
- #edit {
-            /*color: #3385ff;*/
-            background-color: #f8f8f8;
-            /* Green */
-            border: none;
-            color: #6495ED;
-            padding: 6px 12px;
-            text-align: right;
+.btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 8%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+      margin-left:14%;
+      min-width:80px;
+    }
+.btn0 {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 8%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+      min-width:80px;
+    }
+.btn1 {
+      background-color: #ff0000;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 8%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+      min-width:80px;
+    }
+.btn2 {
+      background-color: #45a049;
+      color: white;
+      padding: 15px;
+      margin: 0px 35px 10px;;
+      border: none;
+      width: 12%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+      min-width:150px;
+      float: right;
+    }
 
-            display: inline-block;
-            font-size: 13px;
-            margin: 4px 2px;
-            cursor: pointer;
-            margin-left: 150px;
-       }
+    .btn:hover {
+      background-color: #45a049;
+    }
+#editt {
+ color:white;
+ font-size: 15.7px;
+ }
+ 
+#carttable, td, th {
+      border-collapse: collapse;
+      background-color: #F8F8F8;
+      padding: 10px;
+      width: auto;
+      text-align: center;
+      vertical-align: top;
+      background-color: #F8F8F8;
+	  border: 1.5px solid #ddd;
+	  table-layout:auto;
+    }
 
+    .form-control {
+      border: none;
+      background-color: #f8f8f8;
+      text-align: center;
+      outline: 0;
+      font-family: Raleway, Helvetica, Arial, sans-serif;
+      font-size:21px;
+    }
 
               ​
  /* only the submit button is matched by this selector,
@@ -165,18 +240,14 @@ h2 {
      <nav class="nav" role="navigation">
      <div class="container nav-elements">
      <div class="branding">
-          <a href="#home"><img src="images/logo.png"
+          <a href="#home"><img style="margin-left:92px;" src="images/logo.png"
 						alt="Logo - H Plus Sports"></a>
      </div>
      <!-- branding -->
      <ul class="navbar">
-     	<li><a href="home">Home</a></li>
-        <li><a href="home#history">About Us</a></li>
         <li><a href="carsearchresult">Search Cars</a></li>
         <li><a href="partsearchresult">Search Parts</a></li>
-        <li><a href="login">Login</a></li>
-        <li><a href="registerUser">Register</a></li>
-        <li><a href="profile.html">Profile</a></li>
+        <li><a href="logout">Logout</a></li>
         <li><a href="shoppingcart">Cart</a></li>
      </ul>
      <!-- navbar -->
@@ -200,7 +271,7 @@ h2 {
        <p>
          Here is your personal information:
        </p>
-       <button id="edit"><a href="editaccount.html">Edit</a></button>
+       <button class="btn" ><a id="editt" href="editaccount.html">Edit</a></button>
        <br />
        <!-- Please retrieve data for Account Information -->
        <form action="customerinfo" method="post">
@@ -225,22 +296,22 @@ h2 {
       
       <div class="form-control">
               <label for="newcontact">Contact:</label>
-              <input type="number" class="form-control" id="contact" name="contact" value=<%=users.getContact()%> READONLY>
+              <input type="text" class="form-control" id="contact" name="contact" value=<%=users.getContact()%> READONLY>
       </div>
       
       <div class="form-control">
-             <label for="newemail">Email:</label>
-             <input type="email" class="form-control" id="email" name="email" value=<%=users.getEmailid()%> READONLY>
+             <label style="margin-left:60px;" for="newemail">Email:</label>
+             <input style="width:340px;" type="text" class="form-control" id="email" name="email" value=<%=users.getEmailid()%> READONLY>
       </div>
       
       <div class="form-control">
               <label for="newaddress">Address:</label>
-              <input type="tel" class="form-control" id="address" name="address" value=<%=users.getAddress()%> READONLY>
+              <input type="text" class="form-control" id="address" name="address" value=<%=users.getAddress()%> READONLY>
       </div>
       
       <div class="form-control">
-             <label for="newdob">Date of Birth:</label>
-             <input type="date" class="form-control" id="dob" name="dob" value=<%=users.getDateofbirth()%> READONLY>
+             <label for="dob">Date of Birth:</label>
+             <input type="text" class="form-control" id="dob" name="dob" value=<%=users.getDateofbirth()%> READONLY>
       </div>
 
 
@@ -256,99 +327,100 @@ h2 {
        <p>
            This is a list of your purchases on our website.
        </p>
-       
-       <div id="purchases">
-            <button class="accordion">Order 1</button>
-        <div class="panel">
-
-        <!-- Please retrive Customer Order 1 into this form -->
-
-        <div class="form-control">
-             <label for="ordernumber">Order Number:</label>
-             <input type="number" class="form-control" id="ordernumber" READONLY>
-         </div>
-         
-         <div class="form-control">
-               <label for="itemname">Item Name:</label>
-               <input type="text" class="form-control" id="itemname" READONLY>
-          </div>
-          
-          <div class="form-control">
-               <label for="category">Category:</label>
-               <input type="text" class="form-control" id="category" READONLY>
-          </div>
-          
-          <div class="form-control">
-               <label>Description:</label>
-               <textarea class="form-control" rows="5" id="description" disabled name="description"></textarea>
-          </div>
-          
-          <div class="form-control">
-               <label for="price">Price:</label>
-               <input type="number" class="form-control" id="price" READONLY>
-          </div>
-          
-          <div class="form-control">
-               <label for="provider">Provider</label>
-               <input type="text" class="form-control" id="provider" READONLY>
-           </div>
-
-           <!-- End of Customer Order 1 -->
+       		  <div id="purchases">
 
            
-          </div>
-          </div>
-          </div>
+             <table id="carttable">
+             <thead>
+              <tr>
+                <th width="480">ID</th>
+                <th width="120">Item Name</th>
+                <th width="120">Price</th>
+                <th>Order Date</th>
+              </tr>
+            </thead>
+            <tbody>
 
-          <div id="Sales" class="tabcontent">
+			 <%
+  	        		List<BookingData> bookingdetail1 = new ArrayList<BookingData>();
+  					bookingdetail1 = (ArrayList)request.getAttribute("bookingdetail1");
+              		Iterator<BookingData> iterator2 = bookingdetail1.iterator();
+              		while (iterator2.hasNext()) {
+  						BookingData bookingdata1 = iterator2.next();
+
+          	 %>
+
+              <tr>
+                <td> <input disabled type="text" class="form-control"  id="purchasepartid" name="purchasepartid" value=<%=String.valueOf(bookingdata1.getOrderid())%>> </td>
+                <td> <input disabled type="text" class="form-control"  id="purchasepartname" name="purchasepartname" value=<%=bookingdata1.getItemname()%>> </td>
+                <td> <input disabled type="text" class="form-control"  id="purchaseprice" name="purchaseprice" value=<%=String.valueOf(bookingdata1.getCost())%>></td>
+                <td> <input disabled type="text" class="form-control"  id="purchaseorderdate" name="purchaseorderdate" value=<%=bookingdata1.getOrderdate()%>> </td>
+              </tr>
+
+			 <%
+              		}
+			 %>
+
+            </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+           </div>
+       
+       </div>
+
+       <div id="Sales" class="tabcontent">
+       
           <h2>Sales History</h2>
           <p>
               This is a list of Car Parts you have sold on our website.
           </p>
-          <div id="purchases">
-          <button class="accordion">Sales 1</button>
-          <div class="panel">
+		  <div id="purchases">
 
-          <!-- Please retrive Sales 1 into this form -->
+           
+             <table id="carttable">
+             <thead>
+              <tr>
+                <th width="480">ID</th>
+                <th width="120">Item Name</th>
+                <th width="120">Price</th>
+                <th>Order Date</th>
+              </tr>
+            </thead>
+            <tbody>
 
-          <div class="form-control">
-               <label for="salesnumber">Sales Number:</label>
-               <input type="number" class="form-control" id="salesnumber" READONLY>
-          </div>
-          
-          <div class="form-control">
-               <label for="itemname">Item Name:</label>
-               <input type="text" class="form-control" id="itemname" READONLY>
-          </div>
-          
-          <div class="form-control">
-               <label for="category">Category:</label>
-               <input type="text" class="form-control" id="category" READONLY>
-          </div>
-          
-          <div class="form-control">
-               <label>Description:</label>
-               <textarea class="form-control" rows="5" id="description" READONLY name="description"></textarea>
-          </div>
-          
-          <div class="form-control">
-               <label for="price">Price:</label>
-               <input type="number" class="form-control" id="price" READONLY>
-          </div>
-          
-          <div class="form-control">
-               <label for="provider">Provider</label>
-               <input type="text" class="form-control" id="provider" READONLY>
-          </div>
+			 <%
+  	        		List<BookingData> bookingdetail2 = new ArrayList<BookingData>();
+  					bookingdetail2 = (ArrayList)request.getAttribute("bookingdetail2");
+              		Iterator<BookingData> iterator3 = bookingdetail2.iterator();
+              		while (iterator3.hasNext()) {
+  						BookingData bookingdata2 = iterator3.next();
 
-          <!-- End of Sales 1 -->
+          	 %>
 
-          </div>
-          </div>
-          </div>
+              <tr>
+                <td> <input disabled type="text" class="form-control"  id="salespartid" name="salespartid" value=<%=String.valueOf(bookingdata2.getOrderid())%>> </td>
+                <td> <input disabled type="text" class="form-control"  id="salespartname" name="salespartname" value=<%=bookingdata2.getItemname()%>> </td>
+                <td> <input disabled type="text" class="form-control"  id="salesprice" name="salesprice" value=<%=String.valueOf(bookingdata2.getCost())%>></td>
+                <td> <input disabled type="text" class="form-control"  id="salesdate" name="salesdate" value=<%=bookingdata2.getOrderdate()%>> </td>
+              </tr>
 
-          <div id="Posts" class="tabcontent">
-          <h2>Current Posts</h2>
+			  <%
+              		}
+			  %>
+
+            </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+           </div>
+
+       </div>
+
+       <div id="Posts" class="tabcontent">
+          <h2><input class="btn2" type="submit" value="Add New Post" id=addnewpost name="addnewpost">Current Posts</h2>
           <p>
              This is a list of your current Car Parts posts on our website.
           </p>
@@ -365,30 +437,35 @@ h2 {
           	 %>
 
                           
-             <!-- Please retrive Current Post 1 into this form -->
+             
+             
+             <table id="carttable">
+             <thead>
+              <tr>
+                <th width="200">Post ID</th>
+                <th width="400">Item Name</th>
+                <th width="120">Category</th>
+                <th>Price</th>
+                <th><input class="btn0" type="submit" value="Edit" id="editpostdetail" name="editpostdetail"></th>
+              </tr>
+            </thead>
+            <tbody>
 
-             <div class="form-control">
-                  <label for="posttitle">Post Title</label>
-                  <input type="text" class="form-control" id="postpartid" name="postpartid" value=<%=String.valueOf(partinventory.getPartid())%> READONLY>
-             </div>
-             
-             <div class="form-control">
-                  <label for="itemname">Item Name:</label>
-                  <input type="text" class="form-control" id="postpartname" name="postpartname" value=<%=partinventory.getName()%> READONLY>
-             </div>
-             
-             <div class="form-control">
-                  <label for="category">Category:</label>
-                  <input type="text" class="form-control" id="postcategory" name="postcategory" value=<%=partinventory.getCategory()%> READONLY>
-             </div>
-             
-             <div class="form-control">
-                  <label for="price">Price:</label>
-                  <input type="number" class="form-control" id="postprice" name="postprice" value=<%=String.valueOf(partinventory.getCost())%> READONLY>
-             </div>
-             
-             <input type="submit" value="editdetail" id="editpostdetail" name="editpostdetail">
-             <input type="submit" value="delete" id="delete" name="delete">
+              <tr>
+
+                <td> <input type="text" class="form-control" id="postpartid" name="postpartid" value=<%=String.valueOf(partinventory.getPartid())%> READONLY> </td>
+                <td> <input type="text" class="form-control"  id="postpartname" name="postpartname" value=<%=partinventory.getName()%> READONLY> </td>
+                <td> <input type="text" class="form-control"  id="postcategory" name="postcategory" value=<%=partinventory.getCategory()%> READONLY> </td>
+                <td> <input type="text" class="form-control"  id="postprice" name="postprice" value=<%=String.valueOf(partinventory.getCost())%> READONLY></td>
+              	<td> <input class="btn1" type="submit" value="Delete" id="delete" name="delete"></td>
+              </tr>
+
+            </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+      
              
              <%
 					}
@@ -396,10 +473,9 @@ h2 {
 
 
 
-             <!-- End of Current Post 1 -->
-
              </div>
-             </div>
+         </div>
+             
              </div>
              </form>
              </div>

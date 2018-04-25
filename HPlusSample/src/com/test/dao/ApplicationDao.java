@@ -14,33 +14,125 @@ import com.test.beans.*;
 
 public class ApplicationDao {
 
-	public List<Product> searchProducts(String searchString) {
-		Product product = null;
-		List<Product> products = new ArrayList<>();
-
+	public List<Login> getLogin(String username) {
+		List<Login> logindetail = new ArrayList<Login>();
+		Login login = null;
+		System.out.println("username in dao :" + username);
 		try {
 			Connection connection = DBConnection.getConnectionToDatabase();
 
-			String sql = "select * from products where product_name like '%" + searchString + "%'";
-
+			String sql = "select * from login where username ='" + username + "'";
+			System.out.println("sql query :" + sql);
 			Statement statement = connection.createStatement();
 
 			ResultSet set = statement.executeQuery(sql);
 
 			while (set.next()) {
-				product = new Product();
-				product.setProductId(set.getInt("product_id"));
-				product.setProductImgPath(set.getString("image_path"));
-				product.setProductName(set.getString("product_name"));
-				products.add(product);
+				login = new Login();
+				login.setUsername(set.getString("username"));
+				login.setPassword(set.getString("password"));
+				login.setEmailid(set.getString("emailid"));
+				login.setSecretquestion(set.getString("secretquestion"));
+				login.setSecretanswer(set.getString("secretanswer"));
+				login.setUsertype(set.getString("usertype"));
+				System.out.println("usertype in dao :" + login.getUsertype());
+				logindetail.add(login);
 
 			}
 
 		} catch (SQLException exception) {
 			exception.printStackTrace();
 		}
-		return products;
+		return logindetail;
 	}
+	
+	public int getCustomerCount() {
+		int adcount = 0;
+
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+			
+			// write the insert query for Users table
+			String selectquery = "select count(*) from login where usertype = 'Customer'" ;
+			
+			// execute the statement
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet set = statement.executeQuery(selectquery);
+
+			while (set.next()) {
+				
+				adcount = set.getInt(1);
+			}
+						
+			} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return adcount;
+	}
+
+	public int getProviderCount() {
+		int adcount = 0;
+
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+			
+			// write the insert query for Users table
+			String selectquery = "select count(*) from login where usertype = 'Provider'" ;
+			
+			// execute the statement
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet set = statement.executeQuery(selectquery);
+
+			while (set.next()) {
+				
+				adcount = set.getInt(1);
+			}
+						
+			} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return adcount;
+	}
+	
+
+	public List<Login> getLoginAdmin() {
+		List<Login> logindetail = new ArrayList<Login>();
+		Login login = null;
+		
+		try {
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			String sql = "select * from login";
+			System.out.println("sql query :" + sql);
+			Statement statement = connection.createStatement();
+
+			ResultSet set = statement.executeQuery(sql);
+
+			while (set.next()) {
+				login = new Login();
+				login.setUsername(set.getString("username"));
+				login.setPassword(set.getString("password"));
+				login.setEmailid(set.getString("emailid"));
+				login.setSecretquestion(set.getString("secretquestion"));
+				login.setSecretanswer(set.getString("secretanswer"));
+				login.setUsertype(set.getString("usertype"));
+				System.out.println("usertype in dao :" + login.getUsertype());
+				logindetail.add(login);
+
+			}
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return logindetail;
+	}
+	
 	
 	public int createLogin(Login login) {
 		int rowsAffected = 0;
@@ -180,6 +272,37 @@ public class ApplicationDao {
 		return userdetail;
 	}
 
+	public List<BillingData> getBillingDetail(int customerid) {
+		
+		BillingData billingdata = null;
+		List<BillingData> billingdetail = new ArrayList<BillingData>();
+
+		try {
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			String sql = "select * from billingdata where customerid =" + customerid;
+
+			Statement statement = connection.createStatement();
+
+			ResultSet set = statement.executeQuery(sql);
+
+			while (set.next()) {
+				System.out.println("Recieved data from Billingdata");
+				billingdata = new BillingData();
+				billingdata.setUserid(set.getInt("customerid"));
+				billingdata.setCarddetails(set.getString("carddetail"));
+				billingdata.setPassword(set.getString("password"));
+				billingdata.setExpiry(set.getString("expirydate"));
+					
+				billingdetail.add(billingdata);
+			}
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return billingdetail;
+	}
+	
 
 	public int deleteLogin(Login login) {
 		int rowsAffected = 0;
@@ -492,6 +615,7 @@ public class ApplicationDao {
 			Statement statement = connection.createStatement();
 
 			ResultSet set = statement.executeQuery(sql);
+			
 
 			while (set.next()) {
 				System.out.println("Recieved data from carinventory");
@@ -518,6 +642,44 @@ public class ApplicationDao {
 		return cardetail;
 	}
 
+	public List<CarInventory> getCarDetailAdmin() {
+		CarInventory carinventory = null;
+		List<CarInventory> cardetail = new ArrayList<CarInventory>();
+
+		try {
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			String sql = "select * from carinventory";
+
+			Statement statement = connection.createStatement();
+
+			ResultSet set = statement.executeQuery(sql);
+
+			while (set.next()) {
+				System.out.println("Recieved data from carinventory");
+				carinventory = new CarInventory();
+				carinventory.setCarid(set.getInt("carid"));
+				carinventory.setProviderid(set.getInt("providerid"));
+				carinventory.setServiceid(set.getInt("serviceid"));
+				carinventory.setCarmodel(set.getString("carmodel"));
+				carinventory.setCarmake(set.getString("carmake"));
+				carinventory.setMileage(set.getString("mileage"));
+				carinventory.setYearmake(set.getString("yearmake"));
+				carinventory.setStatus(set.getString("status"));
+				carinventory.setKmrun(set.getFloat("kmrun"));
+				carinventory.setCost(set.getFloat("cost"));
+				carinventory.setDescription(set.getString("description"));
+				carinventory.setColor(set.getString("color"));
+				carinventory.setImagepath(set.getString("imagepath"));
+				cardetail.add(carinventory);
+			}
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return cardetail;
+	}
+	
 	
 	public int deleteCarInventory(int carid) {
 		int rowsAffected = 0;
@@ -577,6 +739,34 @@ public class ApplicationDao {
 		return rowupdated;
 	}
 
+	public int getCaradCount() {
+		int adcount = 0;
+
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+			
+			// write the insert query for Users table
+			String selectquery = "select count(*) from carinventory" ;
+			
+			// execute the statement
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet set = statement.executeQuery(selectquery);
+
+			while (set.next()) {
+				
+				adcount = set.getInt(1);
+			}
+			
+						
+			} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return adcount;
+	}
+
 	
 	public int addPartInventory(PartInventory partinventory) {
 		int rowinserted = 0;
@@ -618,6 +808,35 @@ public class ApplicationDao {
 		}
 		return rowinserted;
 	}
+	
+	public int getPartadCount() {
+		int adcount = 0;
+
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+			
+			// write the insert query for Users table
+			String selectquery = "select count(*) from partinventory" ;
+			
+			// execute the statement
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet set = statement.executeQuery(selectquery);
+
+			while (set.next()) {
+				
+				adcount = set.getInt(1);
+			}
+						
+			} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return adcount;
+	}
+
+	
 
 	public List<PartInventory> getPartInventory(int partid) {
 		PartInventory partinventory = null;
@@ -653,6 +872,41 @@ public class ApplicationDao {
 		return partdetail;
 	}
 
+	public List<PartInventory> getPartDetailAdmin() {
+		PartInventory partinventory = null;
+		List<PartInventory> partdetail = new ArrayList<PartInventory>();
+
+		try {
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			String sql = "select * from partinventory";
+
+			Statement statement = connection.createStatement();
+
+			ResultSet set = statement.executeQuery(sql);
+
+			while (set.next()) {
+				System.out.println("Recieved data from partinventory");
+				partinventory = new PartInventory();
+				partinventory.setPartid(set.getInt("partid"));
+				partinventory.setProviderid(set.getInt("providerid"));
+				partinventory.setServiceid(set.getInt("serviceid"));
+				partinventory.setName(set.getString("name"));
+				partinventory.setDescription(set.getString("description"));
+				partinventory.setCost(set.getFloat("cost"));
+				partinventory.setStatus(set.getString("status"));
+				partinventory.setCategory(set.getString("category"));
+				partinventory.setImagepath(set.getString("imagepath"));
+				partdetail.add(partinventory);
+			}
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return partdetail;
+	}
+	
+	
 	public List<PartInventory> getPartAdUser(int userid) {
 		PartInventory partinventory = null;
 		List<PartInventory> partdetail = new ArrayList<PartInventory>();
@@ -963,46 +1217,244 @@ public class ApplicationDao {
 		return rowsAffected;
 	}
 
-	public int addBookingData(BookingData bookingdata) {
+	public int deleteCartBooking(int userid) {
+		int rowsAffected = 0;
+		System.out.println("delete cart data " + userid);
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			// write the insert query
+			String deleteQuery = "Delete from cart where customerid = ?";
+
+			// set parameters with PreparedStatement
+			java.sql.PreparedStatement statement = connection.prepareStatement(deleteQuery);
+			statement.setInt(1, userid);
+			
+			// execute the statement
+			rowsAffected = statement.executeUpdate();
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return rowsAffected;
+	}
+	
+	
+	public int addBookingData(String orderdate, int userid ) {
+		
 		int rowinserted = 0;
+		Cart cart=null;
 		System.out.println("in add booking data");
 		try {
 			// get the connection for the database
 			Connection connection = DBConnection.getConnectionToDatabase();
 			
-			//Get last value of CarID from CarInventory Table 
-			int incrementorderid=0;
-			java.sql.PreparedStatement pst1 = connection.prepareStatement("select max(orderid) from bookingdata");
-            ResultSet rs = pst1.executeQuery();
-            while(rs.next())
-            {            	
-            	incrementorderid = rs.getInt(1) + 1;
-            }
+			String sql = "select * from cart where customerid =" + userid;
+
+			Statement statement1 = connection.createStatement();
+
+			ResultSet set = statement1.executeQuery(sql);
+
+			while (set.next()) {
+				System.out.println("Recieved data from cart");
+				cart = new Cart();
+				cart.setCartid(set.getInt("cartid"));
+				cart.setProviderid(set.getInt("providerid"));
+				cart.setCustomerid(set.getInt("customerid"));
+				cart.setServiceid(set.getInt("serviceid"));
+				cart.setItemname(set.getString("itemname"));
+				cart.setCost(set.getFloat("cost"));
+				cart.setQuantity(set.getInt("quantity"));
+			
+				//Get last value of CarID from CarInventory Table 
+				int incrementorderid=0;
+				java.sql.PreparedStatement pst1 = connection.prepareStatement("select max(orderid) from bookingdata");
+				ResultSet rs = pst1.executeQuery();
+				while(rs.next())
+				{            	
+					incrementorderid = rs.getInt(1) + 1;
+					System.out.println("incrementid  " + incrementorderid);
+				}
 
 			
-			// write the insert query for Users table
-			String insertQuery = "insert into cart values(?,?,?,?,?,?,?,?)";
+				// write the insert query for Users table
+				String insertQuery = "insert into bookingdata values(?,?,?,?,?,?,?,?)";
 
-			// set parameters with PreparedStatement
-			java.sql.PreparedStatement statement = connection.prepareStatement(insertQuery);
-			statement.setInt(1, incrementorderid);
-			statement.setInt(2, bookingdata.getCustomerid());
-			statement.setInt(3, bookingdata.getProviderid());
-			statement.setInt(4, bookingdata.getServiceid());
-			statement.setString(5, bookingdata.getItemname());
-			statement.setFloat(6, bookingdata.getCost());
-			statement.setInt(7, bookingdata.getQuantity());
-			statement.setDate(8, bookingdata.getOrderdate());
+				// set parameters with PreparedStatement
+				java.sql.PreparedStatement statement = connection.prepareStatement(insertQuery);
+				statement.setInt(1, incrementorderid);
+				statement.setInt(2, cart.getCustomerid());
+				statement.setInt(3, cart.getProviderid());
+				statement.setInt(4, cart.getServiceid());
+				statement.setString(5, cart.getItemname());
+				statement.setFloat(6, cart.getCost());
+				statement.setInt(7, cart.getQuantity());
+				statement.setString(8, orderdate);
 			
-			// execute the statement
-			rowinserted = statement.executeUpdate();
+				// execute the statement
+				rowinserted = rowinserted + statement.executeUpdate();
+				System.out.println("rowinserted " + rowinserted);
+			}	
 			
-			} catch (SQLException exception) {
-			exception.printStackTrace();
+		} catch (SQLException exception) {
+				exception.printStackTrace();
 		}
 		return rowinserted;
 	}
 
+	public List<BookingData> getBookingbyCustomer(int customerid) {
+		BookingData bookingdata = null;
+		List<BookingData> bookingdetail = new ArrayList<BookingData>();
+
+		try {
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			String sql = "select * from bookingdata where customerid =" + customerid;
+
+			Statement statement = connection.createStatement();
+
+			ResultSet set = statement.executeQuery(sql);
+
+			while (set.next()) {
+				System.out.println("Recieved data from cart");
+				bookingdata = new BookingData();
+				bookingdata.setOrderid(set.getInt("orderid"));
+				bookingdata.setProviderid(set.getInt("providerid"));
+				bookingdata.setCustomerid(set.getInt("customerid"));
+				bookingdata.setServiceid(set.getInt("serviceid"));
+				bookingdata.setItemname(set.getString("itemname"));
+				bookingdata.setCost(set.getFloat("cost"));
+				bookingdata.setQuantity(set.getInt("quantity"));
+				bookingdata.setOrderdate(set.getString("orderdate"));
+				bookingdetail.add(bookingdata);
+			}
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return bookingdetail;
+	}
+
+	public List<BookingData> getBookingbyProvider(int providerid) {
+		BookingData bookingdata = null;
+		List<BookingData> bookingdetail = new ArrayList<BookingData>();
+
+		try {
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			String sql = "select * from bookingdata where providerid =" + providerid;
+
+			Statement statement = connection.createStatement();
+
+			ResultSet set = statement.executeQuery(sql);
+
+			while (set.next()) {
+				System.out.println("Recieved data from cart");
+				bookingdata = new BookingData();
+				bookingdata.setOrderid(set.getInt("orderid"));
+				bookingdata.setProviderid(set.getInt("providerid"));
+				bookingdata.setCustomerid(set.getInt("customerid"));
+				bookingdata.setServiceid(set.getInt("serviceid"));
+				bookingdata.setItemname(set.getString("itemname"));
+				bookingdata.setCost(set.getFloat("cost"));
+				bookingdata.setQuantity(set.getInt("quantity"));
+				bookingdata.setOrderdate(set.getString("orderdate"));
+				bookingdetail.add(bookingdata);
+			}
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return bookingdetail;
+	}
+
+	public List<BookingData> getBookingAdmin() {
+		BookingData bookingdata = null;
+		List<BookingData> bookingdetail = new ArrayList<BookingData>();
+
+		try {
+			Connection connection = DBConnection.getConnectionToDatabase();
+
+			String sql = "select * from bookingdata";
+
+			Statement statement = connection.createStatement();
+
+			ResultSet set = statement.executeQuery(sql);
+
+			while (set.next()) {
+				System.out.println("Recieved data from cart");
+				bookingdata = new BookingData();
+				bookingdata.setOrderid(set.getInt("orderid"));
+				bookingdata.setProviderid(set.getInt("providerid"));
+				bookingdata.setCustomerid(set.getInt("customerid"));
+				bookingdata.setServiceid(set.getInt("serviceid"));
+				bookingdata.setItemname(set.getString("itemname"));
+				bookingdata.setCost(set.getFloat("cost"));
+				bookingdata.setQuantity(set.getInt("quantity"));
+				bookingdata.setOrderdate(set.getString("orderdate"));
+				bookingdetail.add(bookingdata);
+			}
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return bookingdetail;
+	}
+
+	public int getCarorderCount() {
+		int adcount = 0;
+
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+			
+			// write the insert query for Users table
+			String selectquery = "select count(*) from bookingdata where serviceid = 1" ;
+			
+			// execute the statement
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet set = statement.executeQuery(selectquery);
+
+			while (set.next()) {
+				
+				adcount = set.getInt(1);
+			}
+						
+			} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return adcount;
+	}
+
+	public int getPartorderCount() {
+		int adcount = 0;
+
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+			
+			// write the insert query for Users table
+			String selectquery = "select count(*) from bookingdata where serviceid = 2" ;
+			
+			// execute the statement
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet set = statement.executeQuery(selectquery);
+
+			while (set.next()) {
+				
+				adcount = set.getInt(1);
+			}
+						
+			} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return adcount;
+	}
 	
 	
 }

@@ -5,6 +5,7 @@
  <%@page import="java.util.List"%>
  <%@page import="com.test.beans.PartInventory"%>
  <%@page import="com.test.beans.CarInventory"%>
+ <%@page import="com.test.beans.BookingData"%>
         
           <html lang="en">
 
@@ -126,35 +127,109 @@
                 transition: max-height 0.2s ease-out;
               }
 
-              form {
-                padding: 30px;
-                border: 1px solid black;
-                display: inline-block;
-                text-align: center;
-              }
+               form {
+            padding: 30px;
+            
+            display: inline-block;
+            text-align: center;
+      }
 
-              label {
-                display: inline-block;
-                width: 140px;
-                text-align: right;
-                min-width: 80px;
-              }
+ label {
+           display: inline-block;
+           width: 140px;
+           text-align: right;
+           min-width: 80px;
+           margin-right:7px;
+       }
+ #newfname, #newlname,#newcontact,#newemail,#newaddress, #newdob {
+      width: 50%;
+      margin-bottom: 20px;
+      padding: 12px;
+      border: 1px solid #f8f8f8;
+      border-radius: 3px;
+    }
+ 
 
-              #edit {
-                /*color: #3385ff;*/
-                background-color: #f8f8f8;
-                /* Green */
-                border: none;
-                color: #6495ED;
-                padding: 6px 12px;
-                text-align: right;
+.btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 8%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+      margin-left:14%;
+      min-width:80px;
+    }
+.btn0 {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 8%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+      min-width:80px;
+    }
+.btn1 {
+      background-color: #ff0000;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 8%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+      min-width:80px;
+    }
+.btn2 {
+      background-color: #45a049;
+      color: white;
+      padding: 15px;
+      margin: 0px 35px 10px;;
+      border: none;
+      width: 12%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+      min-width:150px;
+      float: right;
+    }
 
-                display: inline-block;
-                font-size: 13px;
-                margin: 4px 2px;
-                cursor: pointer;
-                margin-left: 150px;
-              }
+    .btn:hover {
+      background-color: #45a049;
+    }
+	#edit3 {
+ 	color:white;
+ 	font-size: 15.7px;
+ 	}
+ 
+#carttable, td, th {
+      border-collapse: collapse;
+      background-color: #F8F8F8;
+      padding: 10px;
+      width: auto;
+      text-align: center;
+      vertical-align: top;
+      background-color: #F8F8F8;
+	  border: 1.5px solid #ddd;
+	  table-layout:auto;
+    }
+
+    .form-control
+     {
+      border: none;
+      background-color: #f8f8f8;
+      text-align: center;
+      outline: 0;
+      font-family: Raleway, Helvetica, Arial, sans-serif;
+      font-size:21px;
+    }
 
 
               ​
@@ -175,13 +250,10 @@
                   </div>
                   <!-- branding -->
                   <ul class="navbar">
-                    <li><a href="home">Home</a></li>
-                    <li><a href="home#history">About Us</a></li>
-                    <li><a href="carsearchresult">Search Cars</a></li>
-       			    <li><a href="partsearchresult">Search Parts</a></li>
-                    <li><a href="login">Login</a></li>
-                    <li><a href="registerUser">Register</a></li>
-                    <li><a href="profile.html">Profile</a></li>
+                        <li><a href="carsearchresult">Search Cars</a></li>
+                        <li><a href="partsearchresult">Search Parts</a></li>
+                        <li><a href="logout">Logout</a></li>
+                        <li><a href="shoppingcart">Cart</a></li>
                   </ul>
                   <!-- navbar -->
                 </div>
@@ -205,7 +277,7 @@
                   <p>
                     Here is your personal information:
                   </p>
-                  <button id="edit"><a href="editaccount.html">Edit</a></button>
+                  <button class="btn" id="edit3"><a href="editaccount.html">Edit</a></button>
                   <br />
 
 
@@ -233,8 +305,8 @@
                         <input type="text" class="form-control" id="newcontact" name="newcontact" value=<%=users.getContact()%> READONLY>
                       </div>
                       <div class="form-control">
-                        <label for="newemail">Email:</label>
-                        <input type="text" class="form-control" id="newemail" name="newemail" value=<%=users.getEmailid()%> READONLY>
+                        <label style="margin-left:60px;" for="newemail">Email:</label>
+                        <input style="width:340px;" type="text" class="form-control" id="newemail" name="newemail" value=<%=users.getEmailid()%> READONLY>
                       </div>
                       <div class="form-control">
                         <label for="newaddress">Address:</label>
@@ -260,39 +332,42 @@
                     This is a list of your purchases on our website.
                   </p>
                   <div id="purchases">
-                    <button class="accordion">Order 1</button>
-                    <div class="panel">
+            <table id="carttable">
+             <thead>
+              <tr>
+                <th width="480">Order ID</th>
+                <th width="120">Item Name</th>
+                <th width="120">Price</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
 
-                      <!-- Please retrive Customer Order 1 into this form -->
+			 <%
+  	        		List<BookingData> bookingdetail1 = new ArrayList<BookingData>();
+  					bookingdetail1 = (ArrayList)request.getAttribute("bookingdetail1");
+              		Iterator<BookingData> iterator4 = bookingdetail1.iterator();
+              		while (iterator4.hasNext()) {
+  						BookingData bookingdata1 = iterator4.next();
 
-                      <div class="form-control">
-                        <label for="ordernumber">Order Number:</label>
-                        <input type="number" class="form-control" id="ordernumber" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label for="itemname">Item Name:</label>
-                        <input type="text" class="form-control" id="itemname" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label for="category">Category:</label>
-                        <input type="text" class="form-control" id="category" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label>Description:</label>
-                        <textarea class="form-control" rows="5" id="description" disabled name="description" READONLY></textarea>
-                      </div>
-                      <div class="form-control">
-                        <label for="price">Price:</label>
-                        <input type="number" class="form-control" id="price" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label for="provider">Provider</label>
-                        <input type="text" class="form-control" id="provider" READONLY>
-                      </div>
+          	 %>
 
-                      <!-- End of Customer Order 1 -->
+              <tr>
+                <td> <input disabled type="text" class="form-control"  id="purchasepartid" name="purchasepartid" value=<%=String.valueOf(bookingdata1.getOrderid())%>> </td>
+                <td> <input disabled type="text" class="form-control"  id="purchasepartname" name="purchasepartname" value=<%=bookingdata1.getItemname()%>> </td>
+                <td> <input disabled type="text" class="form-control"  id="purchaseprice" name="purchaseprice" value=<%=String.valueOf(bookingdata1.getCost())%>></td>
+                <td> <input disabled type="text" class="form-control"  id="purchaseorderdate" name="purchaseorderdate" value=<%=bookingdata1.getOrderdate()%>> </td>
+              </tr>
 
-                    </div>
+			 <%
+              		}
+			 %>
+
+            </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
 
 
 
@@ -304,95 +379,58 @@
 
 
                 <div id="Sales" class="tabcontent">
-                  <h2>Sales History</h2>
+                  <h2>Car Part Sales History</h2>
                   <p>
                     This is a list of Car Parts you have sold on our website.
                   </p>
                   <div id="purchases">
-                    <button class="accordion">Sales 1</button>
-                    <div class="panel">
+                     <table id="carttable">
+             <thead>
+              <tr>
+                <th width="480">Sales ID</th>
+                <th width="120">Item Name</th>
+                <th width="120">Price</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
 
-                      <!-- Please retrive Sales 1 into this form -->
+			<%
+  	        		List<BookingData> bookingdetail2 = new ArrayList<BookingData>();
+  					bookingdetail2 = (ArrayList)request.getAttribute("bookingdetail2");
+              		Iterator<BookingData> iterator5 = bookingdetail2.iterator();
+              		while (iterator5.hasNext()) {
+  						BookingData bookingdata2 = iterator5.next();
 
-                      <div class="form-control">
-                        <label for="salesnumber">Sales Number:</label>
-                        <input type="number" class="form-control" id="salesnumber" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label for="itemname">Item Name:</label>
-                        <input type="text" class="form-control" id="itemname" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label for="category">Category:</label>
-                        <input type="text" class="form-control" id="category" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label>Description:</label>
-                        <textarea class="form-control" rows="5" id="description" READONLY name="description"></textarea>
-                      </div>
-                      <div class="form-control">
-                        <label for="price">Price:</label>
-                        <input type="number" class="form-control" id="price" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label for="provider">Provider</label>
-                        <input type="text" class="form-control" id="provider" READONLY>
-                      </div>
+          	 %>
 
-                      <!-- End of Sales 1 -->
+              <tr>
+                <td> <input disabled type="text" class="form-control"  id="salespartid" name="salespartid" value=<%=String.valueOf(bookingdata2.getOrderid())%>> </td>
+                <td> <input disabled type="text" class="form-control"  id="salespartname" name="salespartname" value=<%=bookingdata2.getItemname()%>> </td>
+                <td> <input disabled type="text" class="form-control"  id="salesprice" name="salesprice" value=<%=String.valueOf(bookingdata2.getCost())%>></td>
+                <td> <input disabled type="text" class="form-control"  id="salesdate" name="salesdate" value=<%=bookingdata2.getOrderdate()%>> </td>
+              </tr>
 
-                    </div>
-
-
-                  </div>
-
-                  <p>
-                    This is a list of Car you have sold on our website.
-                  </p>
-                  <div id="purchases">
-                    <button class="accordion">Sales 1</button>
-                    <div class="panel">
-
-                      <!-- Please retrive Sales 1 into this form -->
-
-                      <div class="form-control">
-                        <label for="salesnumber">Sales Number:</label>
-                        <input type="number" class="form-control" id="salesnumber" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label for="itemname">Item Name:</label>
-                        <input type="text" class="form-control" id="itemname" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label for="category">Category:</label>
-                        <input type="text" class="form-control" id="category" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label>Description:</label>
-                        <textarea class="form-control" rows="5" id="description" READONLY name="description"></textarea>
-                      </div>
-                      <div class="form-control">
-                        <label for="price">Price:</label>
-                        <input type="number" class="form-control" id="price" READONLY>
-                      </div>
-                      <div class="form-control">
-                        <label for="provider">Provider</label>
-                        <input type="text" class="form-control" id="provider" READONLY>
-                      </div>
-
-                      <!-- End of Sales 1 -->
-
-                    </div>
+			  <%
+              		}
+			  %>
+			  
+            </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
 
 
                   </div>
+					
                 </div>
 
 
 
 
                 <div id="Posts" class="tabcontent">
-                  <h2>Current Posts</h2>
+                  <h2><input style="width:20%;" class="btn2" type="submit" value="Add Car Part Post" id=addnewpartpost name="addnewpartpost">Car Part Posts</h2>
                   <p>
                     This is a list of your current Car Parts posts on our website.
                   </p>
@@ -407,41 +445,46 @@
 
           %>
 
-                      <!-- Please retrive Current Post 1 into this form -->
+            
+			<table id="carttable">
+             <thead>
+              <tr>
+                <th width="480">Post ID</th>
+                <th width="120">Item Name</th>
+                <th width="120">Category</th>
+                <th>Price</th>
+                <th><input class="btn0" type="submit" value="Edit" id="editpostpartdetail" name="editpostpartdetail"></th>
+              </tr>
+            </thead>
+            <tbody>
 
-             <div class="form-control">
-                  <label for="posttitle">Post Title</label>
-                  <input type="text" class="form-control" id="postpartid" name="postpartid" value=<%=String.valueOf(partinventory.getPartid())%> READONLY>
-             </div>
-             
-             <div class="form-control">
-                  <label for="itemname">Item Name:</label>
-                  <input type="text" class="form-control" id="postpartname" name="postpartname" value=<%=partinventory.getName()%> READONLY>
-             </div>
-             
-             <div class="form-control">
-                  <label for="category">Category:</label>
-                  <input type="text" class="form-control" id="postcategory" name="postcategory" value=<%=partinventory.getCategory()%> READONLY>
-             </div>
-             
-             <div class="form-control">
-                  <label for="price">Price:</label>
-                  <input type="number" class="form-control" id="postprice" name="postprice" value=<%=String.valueOf(partinventory.getCost())%> READONLY>
-             </div>
-             
-             <input type="submit" value="editdetail" id="editpostpartdetail" name="editpostpartdetail">
-             <input type="submit" value="delete" id="deletepostpart" name="deletepostpart">
+              <tr>
+
+                <td> <input type="text" class="form-control" id="postpartid" name="postpartid" value=<%=String.valueOf(partinventory.getPartid())%> READONLY> </td>
+                <td> <input type="text" class="form-control" id="postpartname" name="postpartname" value=<%=partinventory.getName()%> READONLY> </td>
+                <td> <input type="text" class="form-control" id="postcategory" name="postcategory" value=<%=partinventory.getCategory()%> READONLY> </td>
+                <td> <input type="number" class="form-control" id="postprice" name="postprice" value=<%=String.valueOf(partinventory.getCost())%> READONLY> </td>
+                <td> <input class="btn1" type="submit" value="Delete" id="deletepostpart" name="deletepostpart"> </td>
+              </tr>
+
+            </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+            
+
              
              <%
 					}
              %>
 
 
-            <!-- End of Current Post 1 -->
+  
 
             </div>
 
-           </div>
+           <h2><input style="width:20%;" class="btn2" type="submit" value="Add Car Post" id=addnewcarpost name="addnewcarpost">Car Posts</h2>
                   <p>
                     This is a list of your current Car posts on our website.
                   </p>
@@ -459,29 +502,36 @@
             %>
                       
            <!-- Please retrive Car Details of Current Post 1 into this form -->
+		   
+           <table id="carttable">
+             <thead>
+              <tr>
+                <th width="480">Post ID</th>
+                <th width="120">Item Name</th>
+                <th width="120">Category</th>
+                <th>Price</th>
+                <th><input class="btn0" type="submit" value="Edit" id="editpostcardetail" name="editpostcardetail"></th>
+              </tr>
+            </thead>
+            <tbody>
 
-           <div class="form-control">
-                <label for="posttitle">Post Title</label>
-                <input type="text" class="form-control" id="postcarid" name="postcarid" value=<%=String.valueOf(carinventory.getCarid())%> READONLY>
-           </div>
-           
-           <div class="form-control">
-                <label for="itemname">Car Make:</label>
-                <input type="text" class="form-control" id="postcarmake" name="postcarmake" value=<%=carinventory.getCarmake()%> READONLY>
-           </div>
-           
-           <div class="form-control">
-                <label>Car Model:</label>
-                <input type="text" class="form-control" id="postcarmodel" name="postcarmodel" value=<%=carinventory.getCarmodel()%> READONLY>
-            </div>
+              <tr>
+
+                <td> <input type="text" class="form-control" id="postcarid" name="postcarid" value=<%=String.valueOf(carinventory.getCarid())%> READONLY></td>
+                <td> <input type="text" class="form-control" id="postcarmake" name="postcarmake" value=<%=carinventory.getCarmake()%> READONLY> </td>
+                <td> <input type="text" class="form-control" id="postcarmodel" name="postcarmodel" value=<%=carinventory.getCarmodel()%> READONLY> </td>
+                <td> <input type="text" class="form-control" id="postcarprice" name="postcarprice" value=<%=String.valueOf(carinventory.getCost())%> READONLY> </td>
+                <td> <input class="btn1" type="submit" value="Delete" id="deletepostcar" name="deletepostcar"> </td>
+              </tr>
+
+            </tbody>
+            </table>
             
-            <div class="form-control">
-                 <label>Price:</label>
-                 <input type="text" class="form-control" id="postcarprice" name="postcarprice" value=<%=String.valueOf(carinventory.getCost())%> READONLY>
-            </div>
-            
-            <input type="submit" value="editdetail" id="editpostcardetail" name="editpostcardetail">
-            <input type="submit" value="delete" id="deletepostcar" name="deletepostcar">
+            <br>
+            <hr>
+            <br>
+           
+ 
              
              
            <%
@@ -490,12 +540,13 @@
 
 
 
-                          <!-- End of Current Post 1 -->
+                         
 
                       </div>
                   </div>
                 </div>
                 </form>
+              </div>
               </div>
               <br />
             </section>

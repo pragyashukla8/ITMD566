@@ -28,14 +28,14 @@ public class CustomerHome extends HttpServlet{
 		List<PartInventory> partdetail= new ArrayList<PartInventory>();
 		List<Users> userdetail= new ArrayList<Users>();
 		ApplicationDao dao= new ApplicationDao();
-		String email ="";
-		//String email = req.getParameter("email");
+		String email = req.getParameter("email");
+		System.out.println("email :" + email);
 		String partid1 = req.getParameter("postpartid");
+		System.out.println("partid1 :" + partid1);
 		if(partid1.equals(null)) {
 			partid1="0";
 		}
 		int postpartid = Integer.parseInt(req.getParameter("postpartid"));
-		System.out.println("email :" + email);
 		System.out.println("postpartid :" + postpartid);
 		
 		if(req.getParameter("editpostdetail") != null) {
@@ -85,7 +85,18 @@ public class CustomerHome extends HttpServlet{
 			
 		}
 		
+		if(req.getParameter("addnewpost") != null) {
 			
+			System.out.println("addnewpost button");
+			String html = "<html><h3>Cannot find user</h3></html>";
+			resp.getWriter().write(html+" ");
+						
+		    RequestDispatcher dispatcher = req.getRequestDispatcher("/html/carpartform.jsp");
+			dispatcher.include(req, resp);
+					
+		}
+
+		
 	}
 	
 
