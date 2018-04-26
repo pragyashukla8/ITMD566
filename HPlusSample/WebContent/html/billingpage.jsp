@@ -20,6 +20,9 @@
  <!-- Latest compiled and minified CSS -->
  <!-- Latest compiled and minified CSS -->
  <style>
+ 	#profile {
+ 	padding-bottom:240px;
+ 	}
    * {
         box-sizing: border-box;
      }
@@ -59,13 +62,15 @@
                 }
 
 
-
                 input[type=text] {
-                  width: 100%;
+  				 
                   margin-bottom: 20px;
                   padding: 12px;
                   border: 1px solid #f8f8f8;
                   border-radius: 3px;
+                  font-family: Raleway, Helvetica, Arial, sans-serif; 
+                  font-size: 18px; 
+                  background-color:#f8f8f8
                 }
 
                 label {
@@ -164,29 +169,14 @@
                   border-radius: 3px;
                 }
 
-                #Review {
-                  background-color: #F8F8F8;
-
-                }
-
-                #Summary {
-                  background-color: #F8F8F8;
-
-                }
-
-                #infoheader {
-                  margin-top: 93px;
-                }
-
-
+               
                 #carttable {
                   border-collapse: collapse;
                   background-color: F8F8F8;
                   padding: 10px;
-                  width: 100%;
                   text-align: center;
                   vertical-align: top;
-
+				  
                 }
 
                 .cartinput {
@@ -196,11 +186,6 @@
                   outline: 0;
                 }
 
-                .rmv {
-                  background-color: #f8f8f8;
-                  border: none;
-                  outline: 0;
-                }
 
                 input[type=number] {
                   margin-bottom: 19px;
@@ -209,6 +194,9 @@
                   border: none;
                   background-color: #f8f8f8;
                   text-align: center;
+                  font-family: Raleway, Helvetica, Arial, sans-serif; 
+                  font-size: 18px; 
+                  
                 }
 
                 #wrapper {
@@ -216,14 +204,7 @@
                   height: 100px;
                 }
 
-                #btnn {
-                  position: relative;
-                  margin: -20px -50px;
-                  width: 100px;
-                  top: 45%;
-                  left: 35%;
-                }
-
+                
 
 
 
@@ -247,8 +228,9 @@
                     </div>
                     <!-- branding -->
                     <ul class="navbar">
-                      <li><a href="home">Home</a></li>
-                      <li><a href="login">Logout</a></li>
+                      <li><a href="carsearchresult">Search Cars</a></li>
+          <li><a href="partsearchresult">Search Parts</a></li>
+          <li><a href="login">Logout</a></li>
                     </ul>
                     <!-- navbar -->
                   </div>
@@ -298,18 +280,19 @@
                                   <label for="fname"><i class="fa fa-user"></i> Full Name</label>
 
                                   <!-- Retrieve Customer Name -->
-                                  <input style="background-color:#f8f8f8" type="text" id="fname" name="firstname" placeholder="John M. Doe" value=<%=users.getFname()%> disabled>
+                                  <input style=" text-align:center; font-family: Raleway, Helvetica, Arial, sans-serif; font-size: 18px; background-color:white" type="text" id="fname" name="firstname" placeholder="John M. Doe" value=<%=users.getFname()%> >
                                   <label for="email"><i class="fa fa-envelope"></i> Email</label>
 
                                   <!-- Retrieve Customer Email -->
-                                  <input style="background-color:#f8f8f8" type="text" id="email" name="email" placeholder="john@example.com" value=<%=users.getEmailid()%> disabled>
+                                  <input style="text-align:center; font-family: Raleway, Helvetica, Arial, sans-serif; font-size: 18px; background-color:white" type="text" id="email" name="email" placeholder="john@example.com" value=<%=users.getEmailid()%> >
                                   <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
 
                                   <!-- Retrieve Customer Address -->
-                                  <input style="background-color:#f8f8f8" type="text" id="adr" name="address" placeholder="542 W. 15th Street" value=<%=users.getAddress()%> disabled>
-
+                                  <input style="text-align:center; font-family: Raleway, Helvetica, Arial, sans-serif; font-size: 18px; background-color:white" type="text" id="adr" name="address" placeholder="542 W. 15th Street" value=<%=users.getAddress()%> >
+								  <label><input style="text-align:left ;margin-top:50px;" type="checkbox" checked="checked" name="sameadr" > Shipping address same as billing</label>
+                              
                               </div>
-                            </div>
+                            
 
 
 
@@ -317,20 +300,17 @@
                             <!--  Payment Form -->
                             <div class="col-50">
                               <h3>Payment</h3>
-
-                              <label for="fname">Accepted Cards</label>
+							  <label for="fname">Accepted Cards</label>
                               <div class="icon-container">
                                 <i class="fa fa-cc-visa" style="color:navy;"></i>
                                 <i class="fa fa-cc-amex" style="color:blue;"></i>
                                 <i class="fa fa-cc-mastercard" style="color:red;"></i>
                                 <i class="fa fa-cc-discover" style="color:orange;"></i>
                               </div>
-
-
                               <label for="cname">Name on Card</label>
 
                               <!-- Retrieve Credit Card Name -->
-                              <input style="background-color:#f8f8f8" type="text" id="cname" name="cardname" placeholder="John More Doe" value=<%=users.getFname()%> disabled>
+                              <input style="text-align:center; font-family: Raleway, Helvetica, Arial, sans-serif; font-size: 18px;background-color:white" type="text" id="cname" name="cardname" placeholder="John More Doe" value=<%=users.getFname()%> >
 
                               <%
   									}
@@ -349,41 +329,42 @@
                                   <label for="ccnum">Credit card number</label>
 
                                   <!-- Retrieve Credit Card Number -->
-                                  <input style="background-color:#f8f8f8" type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" value=<%=billingdata.getCarddetails()%> disabled>
+                                  <input style="width=100%; text-align:center; font-family: Raleway, Helvetica, Arial, sans-serif; font-size: 18px; background-color:white" type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" value=<%=billingdata.getCarddetails()%> >
                                   <label for="expmonth">Expired Date</label>
 
                                   <!-- Retrieve Credit Card Expired Month -->
-                                  <input style="background-color:#f8f8f8" type="text" id="expdate" name="expdate" placeholder="01/2020" value=<%=billingdata.getExpiry()%> disabled>
+                                  <input style="text-align:center;font-family: Raleway, Helvetica, Arial, sans-serif; font-size: 18px; background-color:white" type="text" id="expdate" name="expdate" placeholder="01/2020" value=<%=billingdata.getExpiry()%> >
 
                                   <%
   										}
          				           %>
-                                    <label><input type="checkbox" checked="checked" name="sameadr" > Shipping address same as billing</label>
+                                    
                             </div>
-
+							</div>
                           </div>
+                          
 
                           <br />
-                          <h3>Delivery Options</h3>
+                          <h2 style="margin-top:50px;">Delivery Options</h2>
                           <hr />
                           <form>
                             <label><input type="radio"  name="delivery"> Normal (3-5 business days)</label>
                             <label><input type="radio"  name="delivery"> Express (1-3 business days)</label>
                           </form>
                           <br />
-                          <h3>Review Order</h3>
+                          <h2 style="margin-top:35px;">Review Order</h2>
                           <hr />
-                          <table id="carttable">
+                          <table id="carttable" align="center">
                             <thead>
                               <tr>
-                                <th width="80">Cart ID</th>
-                                <th width="350">Item Name</th>
-                                <th width="80">Quantity</th>
-                                <th width="130">Unit Price</th>
+                                <th>ID</th>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
 
                               </tr>
                             </thead>
-                            <tbody id="help">
+                            <tbody >
 
                               <%
   	    			 			List<Cart> cartdetail = new ArrayList<Cart>();
@@ -396,10 +377,10 @@
 
                                 <tr>
                                   <!-- Retrive Item1, Quantity1, Price1 and Row Total -->
-                                  <td> <input style="background-color:#f8f8f8" type="text" class="cartid" id="cartid" value=<%=String.valueOf(cart.getCartid())%> disabled placeholder="CartID"></td>
-                                  <td> <input style="background-color:#f8f8f8" type="text" class="cartinput" placeholder="Item1" value=<%=cart.getItemname()%> disabled> </td>
-                                  <td> <input style="background-color:#f8f8f8" type="number" min="1" id="quantity" placeholder="Quantity1" value=<%=cart.getQuantity()%> disabled> </td>
-                                  <td> <input style="background-color:#f8f8f8" type="number" class="cartinput" id="price" placeholder="UnitPrice1" value=<%=cart.getCost()%> disabled> </td>
+                                  <td> <input style="text-align:center;" type="text" class="cartid" id="cartid" value=<%=String.valueOf(cart.getCartid())%> READONLY placeholder="CartID"></td>
+                                  <td> <input  type="text" class="cartinput" placeholder="Item1" value=<%=cart.getItemname()%> READONLY> </td>
+                                  <td> <input  type="number" min="1" id="quantity" placeholder="Quantity1" value=<%=cart.getQuantity()%> > </td>
+                                  <td> <input  type="number" class="cartinput" id="price" placeholder="UnitPrice1" value=<%=cart.getCost()%> READONLY> </td>
 
                                   <!-- End -->
                                 </tr>
@@ -419,30 +400,33 @@
                             <tfoot style="border-top:1px solid black; ">
                               <tr>
                                 <td></td>
-                                <td> <label style="margin-top: 45px;text-align: right; font-weight:bold; font-size:16px; margin-bottom:16.5px;">SubTotal:</label></td>
-                                <td><input style="text-align: left;" type="text" class="cartinput" id="subtotal" disabled value=<%=subtotal%>></td>
                                 <td></td>
+                                <td> <label style="margin-top: 35px;text-align: right; font-weight:bold; font-size:16px; margin-bottom:16.5px;">SubTotal:</label></td>
+                                <td><input style="margin-top: 35px; font-size:20px;" type="text" class="cartinput" id="subtotal" READONLY value=<%=subtotal%>></td>
+                                
 
 
                               </tr>
                               <tr>
+                                <td></td>
                                 <td></td>
                                 <td><label style="text-align: right; font-weight:bold; font-size:16px; margin-bottom:17.5px;">Tax (10%):</label></td>
 
                                 <!-- Retrieve Tax (subtotal * 10%)-->
-                                <td><input style="text-align: left;" type="text" class="cartinput" placeholder="Tax" id="tax" value=<%=tax%> disabled></td>
-                                <td></td>
+                                <td><input style="font-size:20px;" type="text" class="cartinput" placeholder="Tax" id="tax" value=<%=tax%> READONLY></td>
+                                
 
 
                               </tr>
 
                               <tr>
                                 <td></td>
+                                <td></td>
                                 <td><label style="text-align: right; font-weight:bold; font-size:25px;margin-bottom:22px; ">Total:</label></td>
 
                                 <!-- Retrieve Grand Total of the shopping cart (Final Value) -->
-                                <td><input style="text-align: left;" type="text" class="cartinput" placeholder="Tax" id="tax" value=<%=total%> disabled></td>
-                                <td></td>
+                                <td><input style=" font-size:25px" type="text" class="cartinput" placeholder="Tax" id="tax" value=<%=total%> READONLY></td>
+                                
 
 
                               </tr>
@@ -451,7 +435,7 @@
 
                           <div id="wrapper">
                             <a href="summary.html">
-                <input type="submit" value="Place Your Order" class="btn" id="btnn" style="text-align:center; width:40%;">
+                <input type="submit" value="Place Your Order" class="btn" id="btnn" style="margin-top:50px; text-align:center; width:30%;">
                 </a>
                           </div>
                           <br />

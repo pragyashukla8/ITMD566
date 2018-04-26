@@ -425,6 +425,64 @@ public class ApplicationDao {
 		return isupdated;
 	}
 
+	public int updateUser(String contact, String email, String address, int userid) {
+		int rowupdated = 0;
+
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+			
+			
+			System.out.println("contact :" + contact );
+			System.out.println("emailid :" + email );
+			System.out.println("address :" + address );
+			System.out.println("userid :" + userid );
+			
+			// write the insert query
+			String updateQuery = "Update users set contact = '" + contact + "' , address ='" + address + "' , emailid ='" + email +"' where userid = " + userid ;
+			System.out.println("update query :" + updateQuery);
+			
+			// execute the statement
+			
+			Statement statement = connection.createStatement();
+			rowupdated = statement.executeUpdate(updateQuery);
+			
+			
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return rowupdated;
+	}
+	
+	public int updateLoginEmail(String email, String username) {
+		int rowupdated = 0;
+
+		try {
+			// get the connection for the database
+			Connection connection = DBConnection.getConnectionToDatabase();
+			
+			
+			System.out.println("username :" + username );
+			System.out.println("emailid :" + email );
+			
+			// write the insert query
+			String updateQuery = "Update login set emailid = '" + email + "' where username = '" + username + "'";
+			System.out.println("update query :" + updateQuery);
+			
+			// execute the statement
+			
+			Statement statement = connection.createStatement();
+			rowupdated = statement.executeUpdate(updateQuery);
+			
+			
+
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return rowupdated;
+	}	
+	
 	public int addCarInventory(CarInventory carinventory) {
 		int rowinserted = 0;
 

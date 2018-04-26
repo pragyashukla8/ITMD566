@@ -80,9 +80,7 @@ h2 {
             
         }
 
- #purchases {
-                margin: 35px;
-            }
+
 
  form {}
 
@@ -210,7 +208,6 @@ h2 {
       border-collapse: collapse;
       background-color: #F8F8F8;
       padding: 10px;
-      width: auto;
       text-align: center;
       vertical-align: top;
       background-color: #F8F8F8;
@@ -227,6 +224,9 @@ h2 {
       font-size:21px;
     }
 
+#profile {
+padding-botoom: 1000px;
+}
               ​
  /* only the submit button is matched by this selector,
    but to be sure you could use an id or class for that button */
@@ -271,10 +271,11 @@ h2 {
        <p>
          Here is your personal information:
        </p>
-       <button class="btn" ><a id="editt" href="editaccount.html">Edit</a></button>
+       <form action="customerinfo" method="post">
+       <input class="btn0" type="submit" value="Edit" id="edituserdetail" name="edituserdetail">
        <br />
        <!-- Please retrieve data for Account Information -->
-       <form action="customerinfo" method="post">
+       
        <%
   	     	List<Users> userdetail = new ArrayList<Users>();
   	    	userdetail = (ArrayList)request.getAttribute("userdetail");
@@ -333,9 +334,9 @@ h2 {
              <table id="carttable">
              <thead>
               <tr>
-                <th width="480">ID</th>
-                <th width="120">Item Name</th>
-                <th width="120">Price</th>
+                <th width="40">ID</th>
+                <th width="20">Item Name</th>
+                <th width="20">Price</th>
                 <th>Order Date</th>
               </tr>
             </thead>
@@ -442,9 +443,9 @@ h2 {
              <table id="carttable">
              <thead>
               <tr>
-                <th width="200">Post ID</th>
-                <th width="400">Item Name</th>
-                <th width="120">Category</th>
+                <th width="50">Post ID</th>
+                <th >Item Name</th>
+                <th >Category</th>
                 <th>Price</th>
                 <th><input class="btn0" type="submit" value="Edit" id="editpostdetail" name="editpostdetail"></th>
               </tr>

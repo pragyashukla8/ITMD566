@@ -34,10 +34,16 @@
 	}
 	
 	form {
+	padding:60px;
 	display: inline-block;
 	text-align: center;
-	
+	box-shadow: 5px 10px #888888;
+	border: 1px solid black;
 	}
+	
+	#login {
+ 	padding-bottom:390px;
+ 	}
 	
 </style>
 
@@ -79,11 +85,12 @@
 
 			
 			<form action="login" method="post">
-				<label>Username</label> <input type="text" name="username"
-					id="username"><br /> <label>Password</label> <input
+				<label>Username</label> <input style="margin-left:10px;" type="text" name="username"
+					id="username"><br /> <label>Password</label> <input style="margin-left:15px;"
 					type="password" name="password" id="password"><br /> 
-					<a style="color:#6495ED" id="forgot" href="forgetpassword"> Forgot Password??</a><br />
-					<input class="btn" type="submit" value="Login"></input>
+					<p></p>
+					<a style="margin-top:18px; color:#6495ED" id="forgot" href="forgetpassword"> Forgot Password??</a><br />
+					<input style="margin-top:10px;" class="btn" type="submit" value="Login"></input>
 					
 			</form>
 			

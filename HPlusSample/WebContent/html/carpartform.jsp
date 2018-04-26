@@ -12,25 +12,27 @@
       color: #6495ED;
     }
 
-    #submit {
-      /*color: #3385ff;*/
-      background-color: #87CEFA;
-      /* Green */
-      border: none;
-      padding: 8px 20px;
-      text-align: right;
 
-      display: inline-block;
-      font-size: 17px;
-      margin: 4px 2px;
+    .btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 15px 0;
+      border: none;
+      width: 25%;
+      border-radius: 3px;
       cursor: pointer;
+      font-size: 17px;
+		
     }
 
     form {
       padding: 50px;
-      border: 1px solid black;
+      border: 1px solid;
+    box-shadow: 5px 10px #888888;
       display: inline-block;
       text-align: center;
+      
     }
 
     label {
@@ -56,11 +58,10 @@
         </div>
         <!-- branding -->
         <ul class="navbar">
-          <li><a href="home">Home</a></li>
-          <li><a href="#history">About Us</a></li>
-          <li><a href="#products">Cars For Sale</a></li>
-          <li><a href="#parts">Car Parts For Sale</a></li>
-          <li><a href="#search">Search</a></li>
+			<li><a href="carsearchresult">Search Cars</a></li>
+        	<li><a href="partsearchresult">Search Parts</a></li>
+        	<li><a href="logout">Logout</a></li>
+        	<li><a href="shoppingcart">Cart</a></li>
         </ul>
         <!-- navbar -->
       </div>
@@ -91,7 +92,7 @@
 
         <div class="form-control">
          <label>Category:</label>
-         <input list="category" name="category" placeholder="Category">
+         <input list="category" name="category" placeholder="">
          <datalist id="category">
             <option>Select a type</option>
             <option>Air Filter</option>
@@ -104,7 +105,7 @@
 
         <div class="form-control">
           <label>Car Part Name</label>
-          <input list="partname" name="partname" placeholder="partname">
+          <input list="partname" name="partname" placeholder="">
          <datalist id="partname">
             <option>Select Part</option>
             <option>Series 33-2260</option>
@@ -120,13 +121,13 @@
         </div>
 
         <div class="form-control">
-          <label>Please describe your Car Part:</label>
-          <textarea class="form-control" rows="5" id="description" name="description"></textarea>
+          <label style="vertical-align:top;">Description</label>
+          <textarea style="width:173px;resize:none;"class="form-control" rows="5" id="description" name="description"></textarea>
         </div>
 
         <div class="form-control">
           <label>Price:</label>
-          <input type="number" class="form-control" id="price" name="price">
+          <input min="1"type="number" class="form-control" id="price" name="price">
         </div>
 
         <br />
@@ -139,7 +140,7 @@
 
         <br />
         <div class="button">
-          <input type="submit" value="Submit" id="submit">
+          <input class="btn" type="submit" value="Submit" id="submit">
         </div>
       </form>
     </div>

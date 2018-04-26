@@ -164,7 +164,7 @@ public class LoginServlet extends HttpServlet{
 			
 			if(role.equals("Customer")) {
 				System.out.println("customerpage");
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/html/adminhome.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/html/customerhome.jsp");
 				dispatcher.include(req, resp);
 			}
 			

@@ -19,23 +19,58 @@
       color: #6495ED;
     }
 
-    #submit {
-      /*color: #3385ff;*/
-      background-color: #87CEFA;
-      /* Green */
-      border: #3385ff;
-      border-radius: 3px;
-      padding: 5.3px 20px;
-      text-align: right;
-      border: 1px solid #008CBA;
+    
+
+    #carsearchresult {
+      padding-bottom: 240px;
+    }
+    
+    .divclass {
+      padding: 100px;
+      border-radius: 4px;
       display: inline-block;
-      font-size: 17px;
-      margin: 4px 2px;
-      cursor: pointer;
+      text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    form-control {
+    	padding: 45px;
+      border-radius: 4px;
+      display: inline-block;
+      text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
-    #search {
-      padding-bottom: 240px;
+    label {
+      display: inline-block;
+      width: 140px;
+      text-align: right;
+      margin-right:8px;
+    }
+
+
+    
+    .btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 11.2%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+		
+    }
+    
+    #carid, #name, #status, #price, #make, #model{
+      border: ;
+      outline: 0;
+      font-family: Raleway, Helvetica, Arial, sans-serif;
+      font-size: 20px;
+		
     }
 
     /*Resize the wrap to see the search bar change!*/
@@ -52,12 +87,9 @@
         </div>
         <!-- branding -->
         <ul class="navbar">
-          <li><a href="home">Home</a></li>
-          <li><a href="#history">About Us</a></li>
-          <li><a href="#products">Cars For Sale</a></li>
-          <li><a href="#parts">Car Parts For Sale</a></li>
-          <li><a href="#search">Search</a></li>
-          <li><a href="registerUser">New User?</a></li>
+        	<li><a href="partsearchresult">Search Parts</a></li>
+        	<li><a href="logout">Logout</a></li>
+        	<li><a href="shoppingcart">Cart</a></li>
         </ul>
         <!-- navbar -->
       </div>
@@ -77,7 +109,7 @@
     <div class="container">
       <h2 class="headline">Search Cars</h2>
       
-      
+      	<br>
  	     <form action="carsearchresult" method="post">
         
         <!-- Make dropdow -->
@@ -120,8 +152,8 @@
 		
 
         <!-- Search Button -->
-        <input type="submit" value="search" id="submit" name="search">
-        <input type="submit" value="refresh" id="refresh" name="refresh">
+        <input style="margin-left:4.5px; width: 8.2%;" class="btn" type="submit" value="search" id="submit" name="search">
+        <input style="margin-left:4.5px; width: 8.2%;" class="btn" type="submit" value="refresh" id="refresh" name="refresh">
         
       <%
 	      List<CarInventory> cardetail = new ArrayList<CarInventory>();	  
@@ -134,33 +166,40 @@
         
       
     	<div class="form-control">
+    	<div class="divclass">
     	
       	<div class="form-control">
-      		<img src="<%=carinventory.getImagepath()%>">
+      		<img style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-left:10px; margin-bottom:35px;"  width="420" height="350" src="<%=carinventory.getImagepath()%>">
       	</div>	
 
 		<div class="form-control">
-            <input type="text" class="form-control" id="carid" name="carid" value=<%=carinventory.getCarid()%>>
+			<label for="carid">ID:</label>
+            <input style="border:none;" type="text" class="form-control" id="carid" name="carid" value=<%=carinventory.getCarid()%> READONLY>
         </div>          
 
 
 		<div class="form-control">
-            <input type="text" class="form-control" id="make" name="make" value=<%=carinventory.getCarmake()%>>
+			<label for="make">Make:</label>
+            <input style="border:none;" type="text" class="form-control" id="make" name="make" value=<%=carinventory.getCarmake()%> READONLY>
         </div>          
 
 		<div class="form-control">
-            <input type="text" class="form-control" id="model" name="model" value=<%=carinventory.getCarmodel()%>>
+			<label for="model">Model:</label>
+            <input style="border:none;" type="text" class="form-control" id="model" name="model" value=<%=carinventory.getCarmodel()%> READONLY>
         </div>          
 		
 		<div class="form-control">
-            <input type="text" class="form-control" id="status" name="status" value=<%=carinventory.getStatus()%>>
+			<label for="status">Status:</label>
+            <input style="border:none;" type="text" class="form-control" id="status" name="status" value=<%=carinventory.getStatus()%> READONLY>
         </div>          
 
         <div class="form-control">
-          <input type="text" class="form-control" id="price" name="price" value=<%=String.valueOf(carinventory.getCost())%>>
+          <label for="price">Price:</label>
+          <input style="border:none;" type="text" class="form-control" id="price" name="price" value=<%=String.valueOf(carinventory.getCost())%> READONLY>
         </div>
 		
-		<input type="submit" value="viewdetail" id="viewdetail" name="viewdetail">
+		<input style="margin-top:25px; width: 35%;" class="btn" type="submit" value="View Detail" id="viewdetail" name="viewdetail">
+		</div>
 
         </form>
         

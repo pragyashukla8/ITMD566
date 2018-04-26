@@ -16,32 +16,63 @@
       color: #6495ED;
     }
 
-    #save {
-      /*color: #3385ff;*/
-      background-color: #87CEFA;
-      /* Green */
-      border: none;
-      padding: 8px 20px;
-      text-align: right;
-
-      display: inline-block;
-      font-size: 17px;
-      margin: 4px 2px;
-      cursor: pointer;
+    #cardetails {
+    background-color:white;
+    padding-bottom:240px;
     }
-
-    form {
-      padding: 50px;
-      border: 1px solid black;
+    
+    
+    .divclass {
+      padding: 100px;
+      border-radius: 4px;
       display: inline-block;
       text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    form-control {
+    	padding: 45px;
+      border-radius: 4px;
+      display: inline-block;
+      text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     label {
       display: inline-block;
       width: 140px;
       text-align: right;
+      margin-right:8px;
     }
+
+
+    
+    .btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 11.2%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+		
+    }
+    
+    #carid, #name, #description, #price, #make1, #model1, #yearmake, #color1, #kmrun, #mileage {
+      border: ;
+      outline: 0;
+      font-family: Raleway, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+		
+    }
+    
+    .formfield * {
+  vertical-align: top;
+}
 
     /* only the submit button is matched by this selector,
    but to be sure you could use an id or class for that button */
@@ -60,11 +91,10 @@
         </div>
         <!-- branding -->
         <ul class="navbar">
-          <li><a href="home">Home</a></li>
-          <li><a href="#history">About Us</a></li>
-          <li><a href="#products">Cars For Sale</a></li>
-          <li><a href="#parts">Car Parts For Sale</a></li>
-          <li><a href="#search">Search</a></li>
+          <li><a href="carsearchresult">Search Cars</a></li>
+        	<li><a href="partsearchresult">Search Parts</a></li>
+        	<li><a href="logout">Logout</a></li>
+        	<li><a href="shoppingcart">Cart</a></li>
         </ul>
         <!-- navbar -->
       </div>
@@ -97,9 +127,9 @@
 	  %>
       
       <form action="cardetails" method="post">
-      	
+      	<div class="divclass">
       	<div class="form-control">
-      		<img src="<%=carinventory.getImagepath()%>">
+      		<img style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-left:10px; margin-bottom:35px;"  width="420" height="350" src="<%=carinventory.getImagepath()%>">
       	</div>	
       
         <div class="form-control">
@@ -108,8 +138,10 @@
         </div>
 
         <div class="form-control">
+        <p class="formfield">
           <label>Description:</label>
-          <textarea class="form-control" rows="5" id="description" name="description"><%=carinventory.getDescription()%></textarea>
+          <textarea style="resize:none;" class="form-control" rows="5" id="description" name="description"><%=carinventory.getDescription()%></textarea>
+        </p>
         </div>
 
         <div class="form-control">
@@ -119,7 +151,7 @@
 
         <div class="form-control">
           <label>Make:</label>
-          <input list="make" name="make" value=<%=carinventory.getCarmake()%>>
+          <input id="make1" list="make" name="make" value=<%=carinventory.getCarmake()%>>
           <datalist id="make">
 		    <option>
                Select A Make
@@ -133,7 +165,7 @@
 
         <div class="form-control">
           <label>Model:</label>
-          <input list="model" name="model" value=<%=carinventory.getCarmodel()%>>
+          <input id="model1" list="model" name="model" value=<%=carinventory.getCarmodel()%>>
           <datalist id="model">
 		    <option>
                Select A Model
@@ -151,7 +183,7 @@
          
         <div class="form-control">
           <label>Color:</label>
-          <input list="color" name="color" value=<%=carinventory.getColor()%>>
+          <input id="color1" list="color" name="color" value=<%=carinventory.getColor()%>>
           <datalist id="color">
 		  <option>Select A Color</option>
           <option>Black</option>
@@ -161,7 +193,7 @@
         </div>
 
         <div class="form-control">
-          <label>Mileage:</label>
+          <label>Consumption:</label>
           <input type="text" class="form-control" id="mileage" name="mileage" value=<%=carinventory.getMileage()%>>
         </div>
 
@@ -202,7 +234,8 @@
 
         <br />
         <div class="button">
-          <input type="submit" value="Submit" id="submit">
+          <input style="width:25%;" class="btn"type="submit" value="Submit" id="submit">
+        </div>
         </div>
       </form>
       <%

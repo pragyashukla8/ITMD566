@@ -17,34 +17,65 @@
       color: #6495ED;
     }
 
-    #save {
-      /*color: #3385ff;*/
-      background-color: #87CEFA;
-      /* Green */
-      border: none;
-      padding: 8px 20px;
-      text-align: right;
-
-      display: inline-block;
-      font-size: 17px;
-      margin: 4px 2px;
-      cursor: pointer;
+    
+    
+    #carpartform {
+    background-color:white;
+    padding-bottom:240px;
     }
-
-
-
-    form {
-      padding: 50px;
-      border: 1px solid black;
+    
+    
+    .divclass {
+      padding: 85px;
+      border-radius: 4px;
       display: inline-block;
       text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    form-control {
+    	padding: 45px;
+      border-radius: 4px;
+      display: inline-block;
+      text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     label {
       display: inline-block;
       width: 140px;
       text-align: right;
+      margin-right:8px;
     }
+
+
+    
+    .btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 11.2%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+		
+    }
+    
+    #partid, #partname, #description, #type, #category #status, #price {
+      border: ;
+      outline: 0;
+      font-family: Raleway, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+		
+    }
+    .formfield * {
+  vertical-align: top;
+}
+    
 
     /* only the submit button is matched by this selector,
    but to be sure you could use an id or class for that button */
@@ -63,11 +94,10 @@
         </div>
         <!-- branding -->
         <ul class="navbar">
-          <li><a href="home">Home</a></li>
-          <li><a href="#history">About Us</a></li>
-          <li><a href="#products">Cars For Sale</a></li>
-          <li><a href="#parts">Car Parts For Sale</a></li>
-          <li><a href="#search">Search</a></li>
+          <li><a href="carsearchresult">Search Cars</a></li>
+        	<li><a href="partsearchresult">Search Parts</a></li>
+        	<li><a href="logout">Logout</a></li>
+        	<li><a href="shoppingcart">Cart</a></li>
         </ul>
         <!-- navbar -->
       </div>
@@ -101,9 +131,9 @@
       %>
       
       <form action="carpartdetails" method="post">
-      
+      	<div class="divclass">
       	<div class="form-control">
-      		<img src="<%=partinventory.getImagepath()%>">
+      		<img style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-left:75px; margin-bottom:35px;"  width="320" height="260" src="<%=partinventory.getImagepath()%>">
       	</div>	
       
         <div class="form-control">
@@ -117,13 +147,16 @@
         </div>
 
         <div class="form-control">
+        	<p class="formfield">
           <label>Description:</label>
-          <textarea class="form-control" rows="5" id="description" name="description"><%=partinventory.getDescription()%></textarea>
+          <textarea style="resize:none;" class="form-control" rows="5" id="description" name="description"><%=partinventory.getDescription()%></textarea>
+        
+        </p>
         </div>
 
         <div class="form-control">
           <label>Type:</label>
-          <input list="category" name="category" value=<%=partinventory.getCategory()%>>
+          <input id="type" list="category" name="category" value=<%=partinventory.getCategory()%>>
           <datalist id="category">
     		  <option>Select a type</option>
  		      <option>Air Filter</option>
@@ -163,7 +196,8 @@
         <hr />
         <br />
         <div class="button">
-          <input type="submit" value="Submit" id="submit">
+          <input style="width:25%;" class="btn"type="submit" value="Submit" id="submit">
+        </div>
         </div>
       </form>
       

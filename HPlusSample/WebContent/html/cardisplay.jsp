@@ -15,6 +15,9 @@
     h1 {
       color: #6495ED;
     }
+    #cardisplay{
+    padding-bottom:240px;
+    }
 
     #save {
       /*color: #3385ff;*/
@@ -30,18 +33,57 @@
       cursor: pointer;
     }
 
-    form {
-      padding: 50px;
-      border: 1px solid black;
+    .divclass {
+      padding: 100px;
+      border-radius: 4px;
       display: inline-block;
       text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    form-control {
+    	padding: 45px;
+      border-radius: 4px;
+      display: inline-block;
+      text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     label {
       display: inline-block;
       width: 140px;
       text-align: right;
+      margin-right:8px;
     }
+
+
+    
+    .btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 11.2%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+		
+    }
+    
+    #carid, #name, #description, #price, #make, #model, #yearmake, #color, #kmrun, #mileage{
+      border: ;
+      outline: 0;
+      font-family: Raleway, Helvetica, Arial, sans-serif;
+      font-size: 20px;
+		
+    }
+    
+    .formfield * {
+  vertical-align: top;
+}
 
     /* only the submit button is matched by this selector,
    but to be sure you could use an id or class for that button */
@@ -60,11 +102,10 @@
         </div>
         <!-- branding -->
         <ul class="navbar">
-          <li><a href="home">Home</a></li>
-          <li><a href="#history">About Us</a></li>
-          <li><a href="#products">Cars For Sale</a></li>
-          <li><a href="#parts">Car Parts For Sale</a></li>
-          <li><a href="#search">Search</a></li>
+          <li><a href="carsearchresult">Search Cars</a></li>
+        	<li><a href="partsearchresult">Search Parts</a></li>
+        	<li><a href="logout">Logout</a></li>
+        	<li><a href="shoppingcart">Cart</a></li>
         </ul>
         <!-- navbar -->
       </div>
@@ -97,54 +138,56 @@
 	  %>
       
       <form action="cardisplay" method="post">
-      	
+      	<div class="divclass">
       	<div class="form-control">
-      		<img src="<%=carinventory.getImagepath()%>">
+      		<img style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-left:15px; margin-bottom:35px;" width="420" height="350" src="<%=carinventory.getImagepath()%>">
       	</div>	
       
         <div class="form-control">
           <label>Title:</label>
-          <input type="text" class="form-control" id="carid" name="carid" value=<%=String.valueOf(carinventory.getCarid())%> READONLY>
+          <input style="border:none;" type="text" class="form-control" id="carid" name="carid" value=<%=String.valueOf(carinventory.getCarid())%> READONLY>
         </div>
 
         <div class="form-control">
-          <label>Description:</label>
-          <textarea class="form-control" rows="5" id="description" name="description" READONLY><%=carinventory.getDescription()%></textarea>
+          <p class="formfield">
+          <label style="vertical-aling:middle;">Description:</label>
+          <textarea style="resize:none; border:none;" class="form-control" rows="5" id="description" name="description" READONLY><%=carinventory.getDescription()%></textarea>
+          </p>
         </div>
 
         <div class="form-control">
           <label>Year:</label>
-          <input type="text" class="form-control" id="yearmake" name="yearmake" value=<%=carinventory.getYearmake()%> READONLY>
+          <input style="border:none;" type="text" class="form-control" id="yearmake" name="yearmake" value=<%=carinventory.getYearmake()%> READONLY>
         </div>
 
         <div class="form-control">
           <label>Make:</label>
-          <input type="text" class="form-control" id="make" name="make" value=<%=carinventory.getCarmake()%> READONLY>
+          <input style="border:none;" type="text" class="form-control" id="make" name="make" value=<%=carinventory.getCarmake()%> READONLY>
         </div>
 
         <div class="form-control">
           <label>Model:</label>
-          <input type="text" class="form-control" id="model" name="model" value=<%=carinventory.getCarmodel()%> READONLY>
+          <input style="border:none;" type="text" class="form-control" id="model" name="model" value=<%=carinventory.getCarmodel()%> READONLY>
         </div>
          
         <div class="form-control">
           <label>Color:</label>
-          <input type="text" class="form-control" id="color" name="color" value=<%=carinventory.getColor()%> READONLY>
+          <input style="border:none;" type="text" class="form-control" id="color" name="color" value=<%=carinventory.getColor()%> READONLY>
         </div>
 
         <div class="form-control">
-          <label>Mileage:</label>
-          <input type="text" class="form-control" id="mileage" name="mileage" value=<%=carinventory.getMileage()%> READONLY>
+          <label>Consumption:</label>
+          <input style="border:none;" type="text" class="form-control" id="mileage" name="mileage" value=<%=carinventory.getMileage()%> READONLY>
         </div>
 
         <div class="form-control">
           <label>Price:</label>
-          <input type="text" class="form-control" id="price" name="price" value=<%=String.valueOf(carinventory.getCost())%> READONLY>
+          <input style="border:none;" type="text" class="form-control" id="price" name="price" value=<%=String.valueOf(carinventory.getCost())%> READONLY>
         </div>
 
         <div class="form-control">
           <label>KM Run:</label>
-          <input type="text" class="form-control" id="kmrun" name="kmrun" value=<%=String.valueOf(carinventory.getKmrun())%> READONLY>
+          <input style="border:none;" type="text" class="form-control" id="kmrun" name="kmrun" value=<%=String.valueOf(carinventory.getKmrun())%> READONLY>
         </div>
 
         <div class="form-control">
@@ -173,11 +216,12 @@
           %>
           
           <hr />
+          </div>
         </div>
 
         <br />
         <div class="button">
-          <input type="submit" value="addToCart" id="addToCart">
+          <input style="width:20%;"class="btn"type="submit" value="Add To Cart" id="addToCart">
         </div>
       </form>
       <%

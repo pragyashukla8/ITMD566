@@ -11,25 +11,14 @@
       color: #6495ED;
     }
 
-    #submit {
-      /*color: #3385ff;*/
-      background-color: #87CEFA;
-      /* Green */
-      border: none;
-      padding: 8px 20px;
-      text-align: right;
 
-      display: inline-block;
-      font-size: 17px;
-      margin: 4px 2px;
-      cursor: pointer;
-    }
 
     form {
       padding: 50px;
       border: 1px solid black;
       display: inline-block;
       text-align: center;
+      box-shadow: 5px 10px #888888;
     }
 
     label {
@@ -37,7 +26,18 @@
       width: 150px;
       text-align: right;
     }
-
+	.btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 12px 0;
+      border: none;
+      width: 25%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+		
+    }
     /* only the submit button is matched by this selector,
    but to be sure you could use an id or class for that button */
   </style>
@@ -55,11 +55,10 @@
         </div>
         <!-- branding -->
         <ul class="navbar">
-          <li><a href="home">Home</a></li>
-          <li><a href="#history">About Us</a></li>
-          <li><a href="#products">Cars For Sale</a></li>
-          <li><a href="#parts">Car Parts For Sale</a></li>
-          <li><a href="#search">Search</a></li>
+			 <li><a href="carsearchresult">Search Cars</a></li>
+        	<li><a href="partsearchresult">Search Parts</a></li>
+        	<li><a href="logout">Logout</a></li>
+        	<li><a href="shoppingcart">Cart</a></li>
         </ul>
         <!-- navbar -->
       </div>
@@ -89,8 +88,8 @@
         </div>
 
         <div class="form-control">
-          <label>Please describe your vehicle:</label>
-          <textarea class="form-control" rows="5" id="description" name="description"></textarea>
+          <label>Description:</label>
+          <textarea style="width:173px;resize:none;" class="form-control" rows="5" id="description" name="description"></textarea>
         </div>
 
         <div class="form-control">
@@ -147,7 +146,7 @@
 
         <div class="form-control">
           <label>Model:</label>
-          <input list="model" name="model" placeholder="model">
+          <input list="model" name="model" placeholder="Model">
           <datalist id="model">
 		     <option>Select A Model</option>
              <option>Camry</option>
@@ -173,7 +172,7 @@
           </div>
 
         <div class="form-control">
-          <label>Mileage:</label>
+          <label>Consumption:</label>
           <input type="text" class="form-control" id="mileage" name="mileage">
         </div>
 
@@ -197,7 +196,7 @@
 
         <br />
         <div class="button">
-          <input type="submit" value="Submit" id="submit">
+          <input class="btn" type="submit" value="Submit" id="submit">
         </div>
       </form>
     </div>

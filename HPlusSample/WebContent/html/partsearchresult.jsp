@@ -18,23 +18,61 @@
     h2 {
       color: #6495ED;
     }
-    #submit {
-      /*color: #3385ff;*/
-      background-color: #87CEFA;
-      /* Green */
-      border: #3385ff;
-      border-radius: 3px;
-      padding: 5.3px 20px;
-      text-align: right;
-      border: 1px solid #008CBA;
+    #search1 {
+    background-color:white;
+    padding-bottom:240px;
+    }
+    
+    
+    .divclass {
+      padding: 85px;
+      border-radius: 4px;
       display: inline-block;
-      font-size: 17px;
-      margin: 4px 2px;
+      text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    form-control {
+      padding: 45px;
+      border-radius: 4px;
+      display: inline-block;
+      text-align: center;
+      margin: 55px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    label {
+      display: inline-block;
+      width: 140px;
+      text-align: right;
+      margin-right:8px;
+    }
+
+
+    
+    .btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 10px 0;
+      border: none;
+      width: 11.2%;
+      border-radius: 3px;
       cursor: pointer;
+      font-size: 17px;
+		
     }
-    #search {
-      padding-bottom: 240px;
+    
+    #partid, #name, #status, #price {
+      border: ;
+      outline: 0;
+      font-family: Raleway, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+		
     }
+    
+   
     /*Resize the wrap to see the search bar change!*/
   </style>
 </head>
@@ -49,12 +87,9 @@
         </div>
         <!-- branding -->
         <ul class="navbar">
-          <li><a href="home">Home</a></li>
-          <li><a href="#history">About Us</a></li>
-          <li><a href="#products">Cars For Sale</a></li>
-          <li><a href="#parts">Car Parts For Sale</a></li>
-          <li><a href="#search">Search</a></li>
-          <li><a href="registerUser">New User?</a></li>
+          	<li><a href="carsearchresult">Search Cars</a></li>
+        	<li><a href="logout">Logout</a></li>
+        	<li><a href="shoppingcart">Cart</a></li>
         </ul>
         <!-- navbar -->
       </div>
@@ -70,13 +105,13 @@
   </header>
   <!-- #home -->
 
-  <section id="search" class="section">
+  <section id="search1" class="section">
     <div class="container">
       <h2 class="headline">Search Car Parts</h2>
       <form action="partsearchresult" method="post">
         
         <!-- Type dropdow -->
-        <select name="categoryoption" style="width:180px; height:33px; font-size:15px;">  
+        <select name="categoryoption" style="width:140px; height:33px; font-size:15px;">  
           <option selected="selected" value="">-Select Category-</option>
           <option value="Air Filter">Air-Filter</option>
           <option value="Brake">Brake</option>
@@ -85,7 +120,7 @@
         </select>
         
         <!-- Parts dropdow -->
-        <select name="nameoption" style="width:180px; height:33px; font-size:15px;">  
+        <select name="nameoption" style="width:327px; height:33px; font-size:15px;">  
           <option selected="selected" value="">-Select Part-</option>
           <option value="Series 33-2260">Series 33-2260</option>
           <option value="Series 33-2135">Series 33-2135</option>
@@ -98,7 +133,7 @@
         </select>
         
         <!-- Price range Dropdown -->
-        <select name="pricerange" style="width:180px; height:33px; font-size:15px;">
+        <select name="pricerange" style="width:100px; height:33px; font-size:15px;">
           <option selected="selected" value="">-Price Sort-</option>
           <option value="1">High to Low</option>
           <option value="2">Low to High</option>
@@ -106,10 +141,13 @@
         
         
         <!-- Search Button -->
-        <input type="submit" value="Search" id="search" name="search">
-        <input type="submit" value="Refresh" id="refresh" name="refresh">
-      
-            <h2 class="headline">Results</h2>
+        <input style="background-color:#6495ED; margin-left:3.5px; width: 10.6%;" class="btn" type="submit" value="Search" id="search" name="search">
+        <input style="margin-left:3.5px; width: 10.6%;" class ="btn" type="submit" value="Refresh" id="refresh" name="refresh">
+      	
+      	<p>
+      	<hr>
+      	</p>
+            <h2 style="text-align:left;"class="headline"></h2>
             
          <%
 	  		     List<PartInventory> partdetail = new ArrayList<PartInventory>();	  
@@ -119,31 +157,39 @@
 					PartInventory partinventory = iterator.next();
 	 	 %>
             
-
+			
+			
 			<div class="form-control">
+			<div class="divclass">
 				
             <div class="form-control">
-            	<img src="<%=partinventory.getImagepath()%>">
+            	<img style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-left:15px; margin-bottom:35px;"  width="320" height="260" src="<%=partinventory.getImagepath()%>" READONLY>
+
             </div>
 	
 			<div class="form-control">
-           		 <input type="text" class="form-control" id="partid" name="partid" value=<%=partinventory.getPartid()%>>
+			<label for="partid">ID:</label>
+           		 <input style="border:none;" type="text" class="form-control" id="partid" name="partid" value=<%=partinventory.getPartid()%> READONLY>
        	    </div>
 			
 			<div class="form-control">
-           		 <input type="text" class="form-control" id="name" name="name" value=<%=partinventory.getName()%>>
+				 <label for="name">Name:</label>
+           		 <input style="border:none;" type="text" class="form-control" id="name" name="name" value=<%=partinventory.getName()%> READONLY>
        	    </div>
        	    
        	    <div class="form-control">
-           		 <input type="text" class="form-control" id="status" name="status" value=<%=partinventory.getStatus()%>>
+       	    	 <label for="status">Status:</label>
+           		 <input style="border:none;" type="text" class="form-control" id="status" name="status" value=<%=partinventory.getStatus()%> READONLY>
        	    </div>
        	    
        	    <div class="form-control">
-           		 <input type="text" class="form-control" id="price" name="price" value=<%=String.valueOf(partinventory.getCost())%>>
+       	    	 <label for="price">Price:</label>
+           		 <input style="border:none;" type="text" class="form-control" id="price" name="price" value=<%=String.valueOf(partinventory.getCost())%> READONLY>
        	    </div>
 			
-			<input type="submit" value="viewdetail" id="viewdetail" name="viewdetail">
-			        
+			<input style="margin-top:25px; width:35%;" class="btn" type="submit" value="View Detail" id="viewdetail" name="viewdetail">
+			
+			</div>        
           </form>
           
           <%

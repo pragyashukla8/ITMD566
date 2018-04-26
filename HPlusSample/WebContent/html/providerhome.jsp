@@ -23,7 +23,9 @@
               }
 
               /* Set height of body and the document to 100% */
-
+			  #profile {
+			  padding-bottom:1000px;
+			  }
               body,
               html {
                 height: 100%;
@@ -68,23 +70,25 @@
 
               #Home {
                 background-color: #F8F8F8;
+                
               }
 
               #Purchases {
                 background-color: #F8F8F8;
+
               }
 
               #Sales {
                 background-color: #F8F8F8;
+                
               }
 
               #Posts {
                 background-color: #F8F8F8;
+                
               }
 
-              #purchases {
-                margin: 35px;
-              }
+             
 
               form {}
 
@@ -277,12 +281,13 @@
                   <p>
                     Here is your personal information:
                   </p>
-                  <button class="btn" id="edit3"><a href="editaccount.html">Edit</a></button>
+                  
                   <br />
 
 
                   <!-- Please retrieve data for Account Information -->
                   <form action="providerinfo" method="post">
+                  <input class="btn0" type="submit" value="Edit" id="edituserdetail" name="edituserdetail">
                     <%
 			  	     	List<Users> userdetail = new ArrayList<Users>();
 			  	    	userdetail = (ArrayList)request.getAttribute("userdetail");

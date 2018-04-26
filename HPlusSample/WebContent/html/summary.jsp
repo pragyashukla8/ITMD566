@@ -40,21 +40,10 @@
 
     /* Style tab links */
 
-    .tablink {
-      background-color: white;
-      color: black;
-      float: left;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      font-size: 18px;
-      width: 100%;
-      font-weight: bold;
-    }
+    
 
     .tablink:hover {
-      background-color: #E8E8E8;
+      background-color: white;
     }
 
     /* Style the tab content (and add height:100% for full page content) */
@@ -62,15 +51,42 @@
     .tabcontent {
       color: black;
       display: none;
-      padding: 100px 20px;
+      padding: 200px 600px;
       height: 100%;
+	  background-color:white;
 
     }
 
 
     #Summary {
-      background-color: #F8F8F8;
+      background-color: white;
 
+    }
+    
+    #profile {
+    padding-bottom:240px;
+    
+    }
+    
+    .btn {
+      background-color: #6495ED;
+      color: white;
+      padding: 8.5px 12px 8.5px 12px;
+      margin: 15px 0;
+      border: none;
+      width: 45%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+		
+    }
+    form {
+    width: 100%;
+    display: inline;
+    }
+    
+    #profile {
+    padding-bottom: 650px;
     }
   </style>
 
@@ -82,8 +98,7 @@
     <nav class="nav" role="navigation">
       <div class="container nav-elements">
         <div class="branding">
-          <a href="#home"><img src="images/logo.png"
-						alt="Logo - H Plus Sports"></a>
+          
         </div>
         <!-- branding -->
         <ul class="navbar">
@@ -100,21 +115,18 @@
 
   <!--Page tabs: My Cart, Customer Information, Order Review, Summary -->
   <section id="profile" class="section">
-    <div class="container tagline">
 
-      <button class="tablink" onclick="openPage('Summary', this, '#F8F8F8')" id="defaultOpen"></button>
+	<p></p>
 
 	<form action="summary" method="post">
-      <div id="Summary" class="tabcontent">
-        <h2 style="text-align:center;"> Thank you for shopping with us! </h2>
+      
+        <h2 style="margin-top: 40px;text-align:center;font-size:40px;"> Thank you for shopping with us! </h2>
         <p style="text-align:center;">
-          You may view your Order Details under <input type="submit" value="Go to Home Page" id="homepage">
+          You may view your Order Details here: <input style="margin-left: 16px;width: 195px;"class="btn" type="submit" value="Go to Home Page" id="homepage">
         </p>
-      </div>
+      
     </form>  
-    </div>
-    </div>
-    </div>
+  
     <br />
   </section>
 
@@ -145,33 +157,10 @@
 
 
 
-  <script>
-    // Page Tab scripts
-    function openPage(pageName, elmnt, color) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablink");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-      }
-      document.getElementById(pageName).style.display = "block";
-      elmnt.style.backgroundColor = color;
-
-    }
-    document.getElementById("defaultOpen").click();
-  </script>
+  
 
 
-  <!-- <script>
-    $('.delivery-checkbox').on('change', function() {
-      if ($('.delivery-checkbox').length > 1) {
-        this.checked = false;
-      }
-    });
-  </script> -->
+
 
 
 

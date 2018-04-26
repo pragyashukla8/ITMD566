@@ -50,6 +50,36 @@ public class ProviderHome extends HttpServlet {
 		int postpartid = Integer.parseInt(req.getParameter("postpartid"));
 		int postcarid = Integer.parseInt(req.getParameter("postcarid"));
 		
+		if(req.getParameter("edituserdetail") != null) {
+			
+			System.out.println("edit user button");
+			//set up the HTTP session
+			HttpSession session = req.getSession();
+						
+			//get the username as an attribute
+			String username = (String) session.getAttribute("username");
+					
+			//Calling ApplicationDao to get userid
+			int userid=0;
+			userid=dao.getUserID(username);
+					
+			if(userid ==0) {
+						
+				String html = "<html><h3>Cannot find user</h3></html>";
+				resp.getWriter().write(html+" ");
+						
+		    	RequestDispatcher dispatcher = req.getRequestDispatcher("/html/login.jsp");
+				dispatcher.include(req, resp);
+			}			
+			userdetail = dao.getUserDetail(userid);
+			
+			//write the products data back to the client browser
+			req.setAttribute("userdetail", userdetail);
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/html/accountedit.jsp");
+			dispatcher.include(req, resp);
+			
+		}
+		
 		if(req.getParameter("editpostpartdetail") != null) {
 			
 			System.out.println("edit button");

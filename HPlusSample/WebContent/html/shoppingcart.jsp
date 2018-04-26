@@ -10,7 +10,6 @@
   <meta charset="UTF-8">
   <title>Auto Part</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
@@ -18,52 +17,15 @@
   <!-- Latest compiled and minified CSS -->
   <!-- Latest compiled and minified CSS -->
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    .row {
-      display: -ms-flexbox;
-      /* IE10 */
-      display: flex;
-      -ms-flex-wrap: wrap;
-      /* IE10 */
-      flex-wrap: wrap;
-      margin: 0 -16px;
-    }
-
-    .col-25 {
-      -ms-flex: 25%;
-      /* IE10 */
-      flex: 25%;
-    }
-
-    .col-50 {
-      -ms-flex: 50%;
-      /* IE10 */
-      flex: 50%;
-    }
-
-    .col-75 {
-      -ms-flex: 75%;
-      /* IE10 */
-      flex: 75%;
-    }
-
-    .col-25,
-    .col-50,
-    .col-75 {
-      padding: 0 16px;
-    }
-
-
+    
 
     input[type=text] {
-      width: 100%;
+
       margin-bottom: 20px;
       padding: 12px;
       border: 1px solid #f8f8f8;
       border-radius: 3px;
+      background-color: #f8f8f8;
     }
 
     label {
@@ -71,11 +33,7 @@
       display: block;
     }
 
-    .icon-container {
-      margin-bottom: 20px;
-      padding: 7px 0;
-      font-size: 24px;
-    }
+    
 
     .btn {
       background-color: #6495ED;
@@ -153,33 +111,18 @@
 
     }
 
-    #Info {
-
-      background-color: #f2f2f2;
-      padding: 5px 20px 15px 20px;
-      border: 1px solid lightgrey;
-      border-radius: 3px;
-    }
-
 
     #carttable {
       border-collapse: collapse;
       background-color: F8F8F8;
       padding: 10px;
-      width: 100%;
       text-align: center;
       vertical-align: top;
 
     }
 
-    .cartinput {
-      border: none;
-      background-color: #f8f8f8;
-      text-align: center;
-      outline: 0;
-    }
-
-    .rmv {
+   
+    #remove {
       background-color: #f8f8f8;
       border: none;
       outline: 0;
@@ -198,14 +141,17 @@
       width: 100%;
       height: 100px;
     }
-
-    #btnn {
-      position: relative;
-      margin: -20px -50px;
-      width: 100px;
-      top: 45%;
-      left: 35%;
+	
+	#itemid, #itemname, #quantity, #price{
+      font-family: Raleway, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+		
     }
+    #profile {
+    padding-bottom:240px;
+    }
+
+
 
 
 
@@ -230,7 +176,8 @@
         </div>
         <!-- branding -->
         <ul class="navbar">
-          <li><a href="home">Home</a></li>
+          <li><a href="carsearchresult">Search Cars</a></li>
+          <li><a href="partsearchresult">Search Parts</a></li>
           <li><a href="login">Logout</a></li>
         </ul>
         <!-- navbar -->
@@ -257,18 +204,19 @@
 
 		
         <form action="shoppingcart" method="post">
+		
+          <table id="" align="center">
 
-          <table id="carttable">
             <thead>
               <tr>
-                <th width="50"></th>
-                <th width="380">ItemID</th>
-                <th width="400">Name</th>
-                <th width="400">Unit Price</th>
-                <th width="250">Quantity</th>
+                <th></th>
+                <th >ItemID</th>
+                <th >Name</th>
+                <th >Unit Price</th>
+                <th >Quantity</th>
               </tr>
             </thead>
-            <tbody id="help">
+            <tbody>
 
 			  <%
 	        		List<Cart> cartdetail = new ArrayList<Cart>();	  
@@ -280,13 +228,13 @@
 
               <tr>
                 <!-- Remove button -->
-                <td><input type="submit" value="x" id="remove" name="remove" style="font-size:26px;color:red;margin-bottom:21.5px><i class="fa fa-remove" "></i></input></td>
+                <td><input type="submit" value="x" id="remove" name="remove" style="font-size:26px;color:red;margin-bottom:21.5px"></input></td>
 
                 <!-- Retrive Item1, Quantity1, Price1 and Total-->
-                <td> <input type="text" class="cartinput" id="itemid" name="itemid" value=<%=String.valueOf(cart.getCartid())%> placeholder="ItemID" READONLY> </td>
-                <td> <input type="text" class="cartinput" id="itemname" name="itemname" value=<%=cart.getItemname()%> placeholder="Item" READONLY> </td>
-                <td> <input type="text" class="cartinput" id="price" name="price" placeholder="Unit Price" READONLY value=<%=String.valueOf(cart.getCost())%>> </td>
-                <td> <input type="number" min="1" id="quantity" name="quantity" placeholder="Quantity" value=<%=cart.getQuantity()%>> 
+                <td> <input style="text-align:center;" type="text"  id="itemid" name="itemid" value=<%=String.valueOf(cart.getCartid())%>  READONLY> </td>
+                <td> <input style="text-align:center;"  type="text"  id="itemname" name="itemname" value=<%=cart.getItemname()%>  READONLY> </td>
+                <td> <input style="text-align:center;"  type="text"  id="price" name="price"  READONLY value=<%=String.valueOf(cart.getCost())%>> </td>
+                <td> <input style="text-align:center;"  type="number" min="1" id="quantity" name="quantity"  value=<%=cart.getQuantity()%>> 
                 </td>
                 <!-- End -->
               </tr>
@@ -296,16 +244,18 @@
 
             </tbody>
 
-                      </table>
+        </table>
+       
+        
 
           <div id="wrapper">
             <a href="billing.html">
-            <input type="submit" value="Billing and Delivery Information" class="btn" id="checkout" name="checkout" style="text-align:center; width:40%;">
+            <input type="submit" value="Billing and Delivery Information" class="btn" id="checkout" name="checkout" style="text-align:center; width:30%; margin-top:100px; margin-left:150px;">
             </a>
           </div>
-
+		
       </div>
-
+		
       </form>
 
 	  

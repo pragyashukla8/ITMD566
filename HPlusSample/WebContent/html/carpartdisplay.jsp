@@ -47,7 +47,7 @@
 
 
     form {
-      padding: 45px;
+      padding: 100px;
       border-radius: 4px;
       display: inline-block;
       text-align: center;
@@ -114,7 +114,7 @@
   <section id="carpartform" class="section">
     <div class="container tagline">
       <br />
-      <h1>Car Part Catalogue</h1>
+      <h1>Car Parts</h1>
       <p>Check out our Car Parts!</p>
       <hr>
       <br/>
@@ -131,7 +131,7 @@
       <form action="carpartdisplay" method="post">
       
       	<div class="form-control">
-      		<img style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-left:125px; margin-bottom:35px;" width="220" height="180" src="<%=partinventory.getImagepath()%>">
+      		<img style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-left:75px; margin-bottom:35px;" width="320" height="260" src="<%=partinventory.getImagepath()%>">
       	</div>	
       
         <div class="form-control">
